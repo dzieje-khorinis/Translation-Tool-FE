@@ -1,0 +1,59 @@
+{
+  "Homepage": "Homepage",
+  "Users": "Users",
+  "Profile": "Profile",
+  "Logout": "Logout",
+
+  "My Profile": "My Profile",
+  "Data": "Data",
+  "Username": "Username",
+  "Email": "Email",
+  "Role": "Role",
+  "Actions": "Actions",
+
+  "Change password": "Change password",
+  "Old password": "Old password",
+  "New password": "New password",
+  "New password confirmation": "New password confirmation",
+  "CHANGE": "CHANGE",
+
+  "Login": "Login",
+  "Password": "Password",
+  "LOGIN": "LOGIN",
+
+  "Translator": "Translator",
+  "Coordinator": "Coordinator",
+  "Admin": "Admin",
+  "Guest": "Guest",
+
+  "Activated": "Activated",
+  "Activation": "Activation",
+  "Activate": "Activate",
+  "Deactivate": "Deactivate",
+  "Yes": "Yes",
+  "No": "No",
+
+  "New": "New",
+  "To do": "To do",
+  "Ready to review": "Ready to review",
+  "Needs work": "Needs work",
+  "Accepted": "Accepted",
+
+  "English": "English",
+  "Polish": "Polish",
+  "German": "German",
+  "Russian": "Russian",
+
+  "DATA LANGUAGE": "DATA LANGUAGE",
+  "SEARCH TERM": "SEARCH TERM",
+  "GROUP": "GROUP",
+  "STATE": "STATE",
+  "Status": "Status",
+  "Count": "Count",
+  "Total": "Total",
+
+  "Add user": "Add user",
+  "Role related language": "Role related language",
+  "Password confirmation": "Password confirmation",
+  "ADD USER": "ADD USER"
+}

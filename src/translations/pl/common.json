@@ -1,0 +1,59 @@
+{
+  "Homepage": "Strona główna",
+  "Users": "Użytkownicy",
+  "Profile": "Profil",
+  "Logout": "Wyloguj",
+
+  "My Profile": "Mój Profil",
+  "Data": "Dane",
+  "Username": "Nazwa użytkownika",
+  "Email": "Adres email",
+  "Role": "Rola",
+  "Actions": "Akcje",
+
+  "Change password": "Zmień hasło",
+  "Old password": "Stare hasło",
+  "New password": "Nowe hasło",
+  "New password confirmation": "Potwierdzenie nowego hasła",
+  "CHANGE": "ZMIEŃ",
+
+  "Login": "Zaloguj",
+  "Password": "Hasło",
+  "LOGIN": "ZALOGUJ",
+
+  "Translator": "Tłumacz",
+  "Coordinator": "Koordynator",
+  "Admin": "Administrator",
+  "Guest": "Gość",
+
+  "Activated": "Aktywowany",
+  "Activation": "Aktywacja",
+  "Activate": "Aktywuj",
+  "Deactivate": "Deaktywuj",
+  "Yes": "Tak",
+  "No": "Nie",
+
+  "New": "Nowy",
+  "To do": "Do zrobienia",
+  "Ready to review": "Do recenzji",
+  "Needs work": "Do poprawki",
+  "Accepted": "Zaakceptowany",
+
+  "English": "Angielski",
+  "Polish": "Polski",
+  "German": "Niemiecki",
+  "Russian": "Rosyjski",
+
+  "DATA LANGUAGE": "JĘZYK DANYCH",
+  "SEARCH TERM": "WYSZUKAJ FRAZY",
+  "GROUP": "GRUPA",
+  "STATE": "STAN",
+  "Status": "Stan",
+  "Count": "Liczba",
+  "Total": "Wszystkich",
+
+  "Add user": "Dodaj użytkownika",
+  "Role related language": "Język powiązany z rolą",
+  "Password confirmation": "Potwierdzenie hasła",
+  "ADD USER": "DODAJ UŻYTKOWNIKA"
+}

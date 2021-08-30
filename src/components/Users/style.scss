@@ -1,0 +1,30 @@
+td:last-of-type {
+  text-align: center;
+}
+
+table.generic {
+  margin: 30px auto;
+  background-color: #202E44;
+  th {
+    padding: 5px;
+    text-align: left;
+    color: white;
+  }
+  tr.even {
+    background-color: #16202f;
+  }
+  td {
+    padding: 5px;
+  }
+  p.link {
+    cursor: pointer;
+    color: #BBB;
+    &:hover {
+      color: #FFF;
+    }
+  }
+}
+
+p.centered {
+  text-align: center;
+}

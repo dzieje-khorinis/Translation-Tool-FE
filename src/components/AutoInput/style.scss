@@ -1,0 +1,47 @@
+$staticsPath: "http://localhost:8000/static";
+
+input.auto_input {
+  border: 1px solid transparent;
+  background: white;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  color: red;
+  &.good {
+    color: green;
+  }
+}
+div.auto_container {
+  position: absolute;
+  background: white;
+  width: 100%;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom: none;
+  z-index: 99;
+  div.option {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid black;
+    color: black;
+    &:hover {
+      background: lightgrey;
+    }
+  }
+}
+
+.input_spinner {
+  background: url($staticsPath + "/images/spinner.gif");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  margin: 0;
+  width: 20px;
+  padding: 0;
+  height: 20px;
+}
