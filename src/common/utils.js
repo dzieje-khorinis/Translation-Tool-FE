@@ -55,3 +55,15 @@ export function roleCodeToText(roleId, roleLang) {
             return i18n.t('common:Guest');
     }
 }
+
+export function thickPartOfText(text, part) {
+    if (part.length === 0) {
+        return text
+    }
+    let leftIndex = text.toLowerCase().search(part.toLowerCase())
+    if (leftIndex === -1) {
+        return text
+    }
+    let rightIndex = leftIndex + part.length
+    return <>{text.slice(0, leftIndex)}<b>{text.slice(leftIndex, rightIndex)}</b>{text.slice(rightIndex)}</>
+}

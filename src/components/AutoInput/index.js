@@ -3,6 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import {apiClient} from "../../common/apiClient";
 import useOutsideClick from "../../common/useOutsideClick";
 import PropTypes from "prop-types";
+import {thickPartOfText} from "../../common/utils";
 
 
 function AutoInput({name, language, url, value, setValue}) {
@@ -32,12 +33,6 @@ function AutoInput({name, language, url, value, setValue}) {
 
         return () => clearTimeout(delayDebounceFn)
     }, [autoChanged, language, searchTerm, url])
-
-    function getNameHTML(name) {
-        let leftIndex = name.search(searchTerm)
-        let rightIndex = leftIndex + searchTerm.length
-        return <>{name.slice(0, leftIndex)}<b>{name.slice(leftIndex, rightIndex)}</b>{name.slice(rightIndex)}</>
-    }
 
     function selectOption(optionIndex) {
         let option = options[optionIndex]
@@ -111,7 +106,7 @@ function AutoInput({name, language, url, value, setValue}) {
                         {
                             options.slice(0, 10).map((v, i) => {
                                 return <div className="option" key={i} onClick={() => selectOption(i)}>
-                                    <span>{getNameHTML(v.name)}</span>
+                                    <span>{thickPartOfText(v.name, searchTerm)}</span>
                                 </div>
                             })
                         }

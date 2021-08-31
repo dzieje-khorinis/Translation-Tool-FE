@@ -20,6 +20,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import {apiClient} from "../../common/apiClient";
 import {apiPathTranslations} from "../../common/routes";
+import {thickPartOfText} from "../../common/utils";
 
 
 const tableIcons = {
@@ -98,8 +99,16 @@ function TranslationsTable({filters, tableRef, setAggregations, setTranslationsD
                         pageSizeOptions: [10],
                     }}
                     columns={[
-                        {title: 'Key', field: 'key'},
-                        {title: 'Value', field: `value_${dataLanguage}`},
+                        {
+                            title: 'Key',
+                            field: 'key',
+                            render: rowData => thickPartOfText(rowData.key, filters.searchTerm)
+                        },
+                        {
+                            title: 'Value',
+                            field: `value_${dataLanguage}`,
+                            render: rowData => thickPartOfText(rowData[`value_${dataLanguage}`], filters.searchTerm)
+                        },
                         {
                             title: 'State',
                             field: `state_${dataLanguage}`,
