@@ -14,7 +14,7 @@ import Nav from "../Nav";
 import {apiClient} from "../../common/apiClient";
 import i18n from "i18next"
 import {LANG_EN, ROLE_GUEST} from "../../common/constants";
-import {convertedRole} from "../../common/utils";
+import {convertedRole, setCookie} from "../../common/utils";
 import Profile from "../Profile";
 import PasswordChange from "../PasswordChange";
 import Page404 from "../Page404";
@@ -44,6 +44,8 @@ class App extends Component {
                 searchTerm: "",
                 group: "",
                 state: "",
+                states: [],
+                path: "",
             },
             aggregations: {},
             translationsData: [],
@@ -162,6 +164,9 @@ class App extends Component {
             let lang = event.target.value
             localStorage.setItem('lang', lang)
             i18n.changeLanguage(lang)
+            apiClient.setAcceptLanguageHeader(lang)
+            // setCookie("django_language", lang)
+
         }
 
         return (

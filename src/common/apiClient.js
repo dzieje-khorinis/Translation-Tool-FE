@@ -1,4 +1,5 @@
 import {apiPathAuthToken} from "./routes";
+import {LANG_EN} from "./constants";
 
 export const API_BASE_URL = process.env.REACT_APP_API_URL
 
@@ -6,7 +7,8 @@ export class ApiClient {
     constructor() {
         this.base_url = API_BASE_URL
         this.headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept-Language': localStorage.getItem('lang') || LANG_EN,
         }
         this.credentials = 'same-origin'
     }
@@ -59,6 +61,11 @@ export class ApiClient {
 
     logout = () => {
         delete this.headers.Authorization
+    }
+
+    setAcceptLanguageHeader = (lang) => {
+        console.log('set header to ', lang)
+        this.headers['Accept-Language'] = lang
     }
 }
 

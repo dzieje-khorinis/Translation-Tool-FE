@@ -1,0 +1,46 @@
+p.treeRoot {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  display: inline-block;
+}
+
+span.nodeSelect {
+  color: gray;
+
+  &:hover {
+    color: lightgray;
+  }
+
+  &.selected {
+    color: white;
+  }
+}
+
+span.nodeName {
+  margin-right: 5px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+span.nodeArrow {
+  margin-right: 5px;
+  display: inline-block;
+
+  &.rotating {
+    animation: rotation 1s infinite linear;
+  }
+}
+
+span.nodeType {
+  margin-right: 5px;
+}

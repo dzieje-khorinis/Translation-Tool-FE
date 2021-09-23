@@ -6,12 +6,17 @@ import PropTypes from "prop-types";
 import {thickPartOfText} from "../../common/utils";
 
 
-function AutoInput({name, language, url, value, setValue}) {
+function AutoInput({name, language, url, value, setValue, optionName}) {
     const [searchTerm, setSearchTerm] = useState("")
     const [display, setDisplay] = useState(false)
     const [options, setOptions] = useState([])
     const [processing, setProcessing] = useState(false)
     const [autoChanged, setAutoChanged] = useState(false)
+
+    useEffect(() => {
+        setAutoChanged(true)
+        setSearchTerm(value)
+    }, [value])
 
     useEffect(() => {
         setDisplay(false)
@@ -37,8 +42,8 @@ function AutoInput({name, language, url, value, setValue}) {
     function selectOption(optionIndex) {
         let option = options[optionIndex]
         setAutoChanged(true)
-        setSearchTerm(option.name)
-        setValue(option.name)
+        setSearchTerm(option[optionName])
+        setValue(option[optionName])
     }
 
     function eraseSearchTerm() {
@@ -106,7 +111,7 @@ function AutoInput({name, language, url, value, setValue}) {
                         {
                             options.slice(0, 10).map((v, i) => {
                                 return <div className="option" key={i} onClick={() => selectOption(i)}>
-                                    <span>{thickPartOfText(v.name, searchTerm)}</span>
+                                    <span>{thickPartOfText(v[optionName], searchTerm)}</span>
                                 </div>
                             })
                         }
@@ -123,5 +128,6 @@ AutoInput.propTypes = {
     url: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     setValue: PropTypes.func.isRequired,
+    optionName: PropTypes.string.isRequired,
 }
 export default AutoInput;

@@ -29,7 +29,7 @@
   "Activated": "Aktywowany",
   "Activation": "Aktywacja",
   "Activate": "Aktywuj",
-  "Deactivate": "Deaktywuj",
+  "Deactivate": "Dezaktywuj",
   "Yes": "Tak",
   "No": "Nie",
 
@@ -51,6 +51,9 @@
   "Status": "Stan",
   "Count": "Liczba",
   "Total": "Wszystkich",
+  "FILEPATH": "ŚCIEŻKA",
+  "FILE TREE": "DRZEWO PLIKÓW",
+  "Click tick to select, click arrow to open/close": "Kliknij ptaszek by wybrać, kliknij strzałkę by otworzyć/zamknąć",
 
   "Add user": "Dodaj użytkownika",
   "Role related language": "Język powiązany z rolą",

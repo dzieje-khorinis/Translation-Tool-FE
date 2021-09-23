@@ -51,6 +51,9 @@
   "Status": "Status",
   "Count": "Count",
   "Total": "Total",
+  "FILEPATH": "FILEPATH",
+  "FILE TREE": "FILE TREE",
+  "Click tick to select, click arrow to open/close": "Click tick to select, click arrow to open/close",
 
   "Add user": "Add user",
   "Role related language": "Role related language",

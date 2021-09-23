@@ -13,10 +13,12 @@ section.side-pane {
   max-width: 30%;
   overflow: auto;
   .input_wrapper {
+    color: rgb(51, 51, 51);
     margin-bottom: 20px;
     position: relative;
     width: 100%;
     table {
+      color: rgb(200, 200, 200);
       font-size: 14px;
       border: 1px solid #202E44;
       width: 100%;

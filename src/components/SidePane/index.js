@@ -1,10 +1,18 @@
 import "./style.scss"
 import {useTranslation} from "react-i18next";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import AutoInput from "../AutoInput";
-import {apiPathGroups} from "../../common/routes";
-import {ROLE_ADMIN, STATUSES} from "../../common/constants";
+import {apiPathFilePathsSearch, apiPathFileTreeNodes, apiPathFileTreeRoot} from "../../common/routes";
+import {LANGUAGES, ROLE_ADMIN, STATUSES} from "../../common/constants";
 import {langCodeToLangName} from "../../common/utils";
+import Select, {components} from "react-select";
+import en from "../../static/images/flags/us.png"
+import pl from "../../static/images/flags/pl.png"
+import de from "../../static/images/flags/de.png"
+import ru from "../../static/images/flags/ru.png"
+import FileTree from "../FileTree";
+
+const {Option} = components;
 
 
 function SidePane({user, filters, setFilters, aggregations}) {
@@ -24,33 +32,59 @@ function SidePane({user, filters, setFilters, aggregations}) {
     let statusItems = [...statuses.keys()].map(statusCode => {
         return {
             value: statusCode,
-            title: statuses.get(statusCode)
+            title: statuses.get(statusCode),  // used for html select
+            label: statuses.get(statusCode),  // used for react-select
         }
     })
 
 
+    const languages = LANGUAGES()
+
+    const dataLang = filters.dataLanguage
+
+    const langCodeToIcon = {
+        en: en,
+        pl: pl,
+        de: de,
+        ru: ru,
+    }
+
     return (
         <section className="side-pane">
-            {/*<p>searchTermTemp: {searchTermTemp}</p>*/}
-            {/*<p>searchTerm: {filters.searchTerm}</p>*/}
-            {/*<p>dataLanguage: {filters.dataLanguage}</p>*/}
-            {/*<p>group: {filters.group}</p>*/}
-            {/*<p>state: {filters.state}</p>*/}
-
             <div className="input_wrapper">
                 <label htmlFor="id_state_lang">{t("DATA LANGUAGE")}</label>
                 {
                     user.role >= ROLE_ADMIN ?
-                        <select id="id_state_lang" value={filters.dataLanguage}
-                                onChange={e => setFilters({dataLanguage: e.target.value})}>
-                            <option value="en">Angielski (en)</option>
-                            <option value="pl">Polski (pl)</option>
-                            <option value="de">Niemiecki (de)</option>
-                            <option value="ru">Rosyjski (ru)</option>
-                        </select>
+                        <Select
+                            value={{value: dataLang, label: `${languages.get(dataLang)} (${dataLang})`}}
+                            isDisabled={false}
+                            isLoading={false}
+                            isClearable={false}
+                            isRtl={false}
+                            isSearchable={false}
+                            onChange={(option, {action}) => {
+                                setFilters({dataLanguage: option.value})
+                            }}
+                            options={
+                                Array.from(languages).map(([key, value]) => {
+                                    return {value: key, label: `${value} (${key})`, icon: langCodeToIcon[key]}
+                                })
+                            }
+                            components={{
+                                Option: props => (
+                                    <Option {...props}>
+                                        <img
+                                            src={props.data.icon}
+                                            alt={props.data.label}
+                                        />
+                                        <span style={{marginLeft: 10}}>{props.data.label}</span>
+                                    </Option>
+                                )
+
+                            }}
+                        />
                         :
                         <p>{langCodeToLangName(user.roleLang)} ({user.roleLang})</p>
-                        // <p>{roleIdToText(user.role, user.roleLang)}</p>
                 }
             </div>
 
@@ -61,40 +95,47 @@ function SidePane({user, filters, setFilters, aggregations}) {
             </div>
 
             <div className="input_wrapper">
-                <label htmlFor="id_group">{t("GROUP")}</label>
+                <label htmlFor="id_group">{t("FILEPATH")}</label>
                 <AutoInput
                     language={filters.dataLanguage}
-                    name="group"
-                    url={apiPathGroups}
-                    value={filters.group}
+                    name="path"
+                    url={apiPathFilePathsSearch}
+                    value={filters.path}
                     setValue={(value) => {
-                        setFilters({group: value})
+                        setFilters({path: value})
                     }}
+                    optionName="path"
                 />
             </div>
 
-            {/*<div className="input_wrapper">*/}
-            {/*    <button>{t("SHOW TREE ▼")}</button>*/}
-            {/*</div>*/}
-
-            {/*<div className="input_wrapper">*/}
-            {/*    <label htmlFor="id_filename">{t("FILENAME")}</label>*/}
-            {/*    <input id="id_filename" name="filename" type="text"/>*/}
-            {/*</div>*/}
-
-            {/*<div className="input_wrapper">*/}
-            {/*    <button>{t("FILENAME TREE")}</button>*/}
-            {/*</div>*/}
+            <div className="input_wrapper">
+                <label htmlFor="id_group">{t("FILE TREE")}</label>
+                <FileTree
+                    rootUrl={apiPathFileTreeRoot}
+                    getChildrenUrl={parent_id => apiPathFileTreeNodes.replace("{parent_id}", parent_id)}
+                    filters={filters}
+                    setFilters={setFilters}
+                />
+            </div>
 
             <div className="input_wrapper">
                 <label htmlFor="id_state">{t("STATE")}</label>
-                <select id="id_state" name="state" value={filters.state}
-                        onChange={e => setFilters({state: e.target.value})}>
-                    <option value=""></option>
-                    {
-                        statusItems.map((item, i) => <option key={i} value={item.value}>{item.title}</option>)
+                <Select
+                    placeholder={""}
+                    options={statusItems}
+                    value={
+                        filters.states.map(element => {
+                            return {
+                                value: element,
+                                label: statuses.get(element),
+                            }
+                        })
                     }
-                </select>
+                    onChange={(option, {action}) => {
+                        setFilters({states: option.map(element => element.value)})
+                    }}
+                    isMulti
+                />
             </div>
 
             <div className="input_wrapper">
