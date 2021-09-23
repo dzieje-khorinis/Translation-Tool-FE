@@ -64,7 +64,6 @@ export class ApiClient {
     }
 
     setAcceptLanguageHeader = (lang) => {
-        console.log('set header to ', lang)
         this.headers['Accept-Language'] = lang
     }
 }

@@ -55,6 +55,22 @@
   "FILE TREE": "FILE TREE",
   "Click tick to select, click arrow to open/close": "Click tick to select, click arrow to open/close",
 
+  "Translations": "Translations",
+  "Edit": "Edit",
+  "Key": "Key",
+  "Value": "Value",
+  "State": "State",
+  "Next Page": "Next Page",
+  "Previous Page": "Previous Page",
+  "First Page": "First Page",
+  "Last Page": "Last Page",
+  "No records to display": "No records to display",
+
+  "Show translation": "Show translation",
+  "Enter translation": "Enter translation",
+  "Translation state": "Translation state",
+  "Save": "Save",
+
   "Add user": "Add user",
   "Role related language": "Role related language",
   "Password confirmation": "Password confirmation",

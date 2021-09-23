@@ -55,6 +55,22 @@
   "FILE TREE": "DRZEWO PLIKÓW",
   "Click tick to select, click arrow to open/close": "Kliknij ptaszek by wybrać, kliknij strzałkę by otworzyć/zamknąć",
 
+  "Translations": "Tłumaczenia",
+  "Edit": "Edytuj",
+  "Key": "Klucz",
+  "Value": "Wartość",
+  "State": "Status",
+  "Next Page": "Następna Strona",
+  "Previous Page": "Poprzednia Strona",
+  "First Page": "Pierwsza Strona",
+  "Last Page": "Ostatnia Strona",
+  "No records to display": "Brak wierszy do wyświetlenia",
+
+  "Show translation": "Pokaż tłumaczenie",
+  "Enter translation": "Wpisz tłumaczenie",
+  "Translation state": "Stan tłumaczenia",
+  "Save": "Zapisz",
+
   "Add user": "Dodaj użytkownika",
   "Role related language": "Język powiązany z rolą",
   "Password confirmation": "Potwierdzenie hasła",

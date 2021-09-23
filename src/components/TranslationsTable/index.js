@@ -44,7 +44,15 @@ const tableIcons = {
 };
 
 
-function TranslationsTable({filters, tableRef, setAggregations, setTranslationsData, openEditModal, refreshTable, setRefreshTable}) {
+function TranslationsTable({
+                               filters,
+                               tableRef,
+                               setAggregations,
+                               setTranslationsData,
+                               openEditModal,
+                               refreshTable,
+                               setRefreshTable
+                           }) {
     const {t} = useTranslation('common');
 
     const [page, setPage] = useState(0)
@@ -66,32 +74,27 @@ function TranslationsTable({filters, tableRef, setAggregations, setTranslationsD
 
     return (
         <section className="translation">
-
-            {/*{*/}
-            {/*    Object.keys(filters).map((key, i) => {*/}
-            {/*        return <p>{key} | {filters[key]} | ({i})</p>*/}
-            {/*    })*/}
-            {/*}*/}
-            {/*<p>Page: {page}</p>*/}
-            {/*<button onClick={(e) => {setPage(page-1);tableRef.current.onChangePage({}, page-1)}}>LEWO</button>*/}
-            {/*<button onClick={(e) => {setPage(page+1);tableRef.current.onChangePage({}, page+1)}}>PRAWO</button>*/}
             <div className="translation-wrapper">
                 <MaterialTable
                     // page={3}
                     tableRef={tableRef}
                     icons={tableIcons}
                     title={t("Translations")}
-                    // localization={{
-                    //     toolbar: {
-                    //         searchPlaceholder: "DUPA"
-                    //     }
-                    // }}
-                    // onChangePage={(page, pageSize) => {
-                    //     console.log(page, pageSize)
-                    // }}
+                    localization={{
+                        header: {
+                            actions: t('Actions'),
+                        },
+                        pagination: {
+                            nextTooltip: t('Next Page'),
+                            previousTooltip: t('Previous Page'),
+                            firstTooltip: t('First Page'),
+                            lastTooltip: t('Last Page'),
+                        },
+                        body: {
+                            emptyDataSourceMessage: t('No records to display'),
+                        },
+                    }}
                     options={{
-                        // page: 4,
-                        // initialPage: 1,
                         search: false,
                         filtering: false,
                         pageSize: 10,
@@ -100,17 +103,17 @@ function TranslationsTable({filters, tableRef, setAggregations, setTranslationsD
                     }}
                     columns={[
                         {
-                            title: 'Key',
+                            title: t('Key'),
                             field: 'key',
                             render: rowData => thickPartOfText(rowData.key, filters.searchTerm)
                         },
                         {
-                            title: 'Value',
+                            title: t('Value'),
                             field: `value_${dataLanguage}`,
                             render: rowData => thickPartOfText(rowData[`value_${dataLanguage}`], filters.searchTerm)
                         },
                         {
-                            title: 'State',
+                            title: t('State'),
                             field: `state_${dataLanguage}`,
                             lookup: {
                                 NEW: t('New'),
@@ -141,7 +144,7 @@ function TranslationsTable({filters, tableRef, setAggregations, setTranslationsD
                             apiClient.get(apiPathTranslations, requestData).then(({status, data}) => {
                                 setAggregations(data.aggregations)
                                 setTranslationsData(data.data)
-                                setPage(data.page-1)
+                                setPage(data.page - 1)
                                 resolve({
                                     data: data.data,
                                     page: data.page - 1,
