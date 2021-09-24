@@ -1,5 +1,9 @@
 import {ROLE_ADMIN, ROLE_COORDINATOR, ROLE_NONE, ROLE_TRANSLATOR} from "./constants";
 import i18n from "i18next"
+import en from "../static/images/flags/us.png";
+import pl from "../static/images/flags/pl.png";
+import de from "../static/images/flags/de.png";
+import ru from "../static/images/flags/ru.png";
 
 
 export const convertedRole = (textRole) => {
@@ -89,4 +93,11 @@ export function getCookie(cname) {
         }
     }
     return "";
+}
+
+export const langCodeToIcon = {
+    en: en,
+    pl: pl,
+    de: de,
+    ru: ru,
 }

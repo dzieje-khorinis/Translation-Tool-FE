@@ -4,8 +4,10 @@ import {reactPathIndex, reactPathProfile, reactPathUsers} from "../../common/rou
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {ROLE_COORDINATOR} from "../../common/constants";
+import LangChange from "../LangChange";
 
-function Nav({user, loggedIn, interfaceLang, languageChangeHandle, logoutClick}) {
+
+function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick}) {
     const {t} = useTranslation('common');
 
     return <nav>
@@ -27,17 +29,18 @@ function Nav({user, loggedIn, interfaceLang, languageChangeHandle, logoutClick})
                 </>
             }
             <li>
-                <select name="language" onChange={languageChangeHandle} defaultValue={interfaceLang}>
-                    <option value="en">English (EN)</option>
-                    <option value="pl">polski (PL)</option>
-                </select>
+                <LangChange
+                    languageChange={languageChange}
+                    interfaceLang={interfaceLang}
+                />
             </li>
         </ul>
+
     </nav>
 }
 
 Nav.propTypes = {
-    languageChangeHandle: PropTypes.func.isRequired,
+    languageChange: PropTypes.func.isRequired,
     logoutClick: PropTypes.func.isRequired,
     interfaceLang: PropTypes.string,
     user: PropTypes.exact({

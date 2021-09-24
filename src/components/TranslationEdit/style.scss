@@ -38,19 +38,55 @@ section.translation-editor {
 
     fieldset {
       border: none;
+      div.langSelectWrapper {
+        display: inline-block;
+        width: 180px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+      }
     }
 
     label.translation-action {
       background: #16202F;
-      color: #999;
+      color: #202E44;
       border: none;
       border-radius: 3px;
       padding: .4em 1em;
       margin: 0 10px;
       &:hover, &.active {
-        background: #000E22;
         color: white;
         border: 1px solid white;
+      }
+
+      &[data-status="NEW"] {
+        background: #2FDAF760;
+        &:hover, &.active {
+          background: #2FDAF790;
+        }
+      }
+      &[data-status="TODO"] {
+        background: #FFE30098;
+        &:hover, &.active {
+          background: #FFE300C8;
+        }
+      }
+      &[data-status="READY_TO_REVIEW"] {
+        background: #FF8F0098;
+        &:hover, &.active {
+          background: #FF8F00C8;
+        }
+      }
+      &[data-status="NEEDS_WORK"] {
+        background: #F7422F98;
+        &:hover, &.active {
+          background: #F7422FC8;
+        }
+      }
+      &[data-status="ACCEPTED"] {
+        background: #3FF72F59;
+        &:hover, &.active {
+          background: #3FF72F89;
+        }
       }
     }
 
@@ -98,7 +134,7 @@ section.translation-editor {
     label.translation-header {
       color: #FFF;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     input.translation-save {

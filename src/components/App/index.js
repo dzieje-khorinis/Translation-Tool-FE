@@ -14,7 +14,7 @@ import Nav from "../Nav";
 import {apiClient} from "../../common/apiClient";
 import i18n from "i18next"
 import {LANG_EN, ROLE_GUEST} from "../../common/constants";
-import {convertedRole, setCookie} from "../../common/utils";
+import {convertedRole} from "../../common/utils";
 import Profile from "../Profile";
 import PasswordChange from "../PasswordChange";
 import Page404 from "../Page404";
@@ -160,13 +160,11 @@ class App extends Component {
 
 
     render() {
-        function languageChangeHandle(event) {
-            let lang = event.target.value
+        function languageChange(lang) {
             localStorage.setItem('lang', lang)
             i18n.changeLanguage(lang)
             apiClient.setAcceptLanguageHeader(lang)
             // setCookie("django_language", lang)
-
         }
 
         return (
@@ -177,7 +175,7 @@ class App extends Component {
                             user={this.state.user}
                             loggedIn={this.state.loggedIn}
                             interfaceLang={this.state.interfaceLang}
-                            languageChangeHandle={languageChangeHandle}
+                            languageChange={languageChange}
                             logoutClick={this.logout}
                         />
                     </header>

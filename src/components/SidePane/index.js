@@ -4,12 +4,8 @@ import React, {useEffect, useState} from "react";
 import AutoInput from "../AutoInput";
 import {apiPathFilePathsSearch, apiPathFileTreeNodes, apiPathFileTreeRoot} from "../../common/routes";
 import {LANGUAGES, ROLE_ADMIN, STATUSES} from "../../common/constants";
-import {langCodeToLangName} from "../../common/utils";
+import {langCodeToIcon, langCodeToLangName} from "../../common/utils";
 import Select, {components} from "react-select";
-import en from "../../static/images/flags/us.png"
-import pl from "../../static/images/flags/pl.png"
-import de from "../../static/images/flags/de.png"
-import ru from "../../static/images/flags/ru.png"
 import FileTree from "../FileTree";
 
 const {Option} = components;
@@ -41,13 +37,6 @@ function SidePane({user, filters, setFilters, aggregations}) {
     const languages = LANGUAGES()
 
     const dataLang = filters.dataLanguage
-
-    const langCodeToIcon = {
-        en: en,
-        pl: pl,
-        de: de,
-        ru: ru,
-    }
 
     return (
         <section className="side-pane">

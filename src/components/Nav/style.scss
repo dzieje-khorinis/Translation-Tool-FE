@@ -6,8 +6,7 @@ header {
   align-items: center;
   height: 60px;
   padding: 0 15px;
-  background: #262626;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #202E44;
 
   nav {
     display: flex;
@@ -17,8 +16,7 @@ header {
     align-items: center;
     height: 60px;
     width: 100%;
-    background: #262626;
-    border-bottom: 1px solid black;
+
 
     a.logo {
       div {
@@ -34,6 +32,7 @@ header {
       list-style-type: none;
 
       li {
+        display: flex;
         a.link, span.link {
           display: flex;
           -webkit-box-align: center;

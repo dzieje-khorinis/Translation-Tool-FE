@@ -1,9 +1,14 @@
 import "./style.scss"
 import {useTranslation} from "react-i18next";
 import {LANGUAGES, ROLE_ADMIN, ROLE_COORDINATOR, ROLE_TRANSLATOR, STATUSES} from "../../common/constants";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {apiClient} from "../../common/apiClient";
 import {apiPathTranslationSave} from "../../common/routes";
+import Select, {components} from "react-select";
+import {langCodeToIcon} from "../../common/utils";
+
+const {Option} = components;
+
 
 function TranslationEdit({user, dataLanguage, translationData, closeEditModal, editCallback}) {
     const {t} = useTranslation('common');
@@ -28,14 +33,7 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
 
     const statusCode = translationData[`state_${languageToWrite}`]
 
-    // const value = translationData[`value_${dataLanguage}`]
     const languages = LANGUAGES()
-    let languageItems = [...languages.keys()].map(langCode => {
-        return {
-            value: langCode,
-            title: languages.get(langCode)
-        }
-    })
 
     const statuses = STATUSES()
     let statusItems = [...statuses.keys()].map(statusCode => {
@@ -97,13 +95,38 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
                 <p className="filepath">{translationData.file}:{translationData.line}</p>
                 <br/>
                 <fieldset>
-                    <label className="translation-header" htmlFor="id_read_translation">{t('Show translation')}:</label>
-                    <select name="read_translation" id="id_read_translation" value={languageToRead}
-                            onChange={(e) => setLanguageToRead(e.target.value)}>
-                        {
-                            languageItems.map((item, i) => <option key={i} value={item.value}>{item.title}</option>)
-                        }
-                    </select>
+                    <label className="translation-header">{t('Show translation')}:</label>
+                    <div className="langSelectWrapper">
+                        <Select
+                            value={{
+                                value: languageToRead.value,
+                                label: `${languages.get(languageToRead)} (${languageToRead})`
+                            }}
+                            isDisabled={false}
+                            isLoading={false}
+                            isClearable={false}
+                            isRtl={false}
+                            isSearchable={false}
+                            onChange={(option, {action}) => setLanguageToRead(option.value)}
+                            options={
+                                Array.from(languages).map(([key, value]) => {
+                                    return {value: key, label: `${value} (${key})`, icon: langCodeToIcon[key]}
+                                })
+                            }
+                            components={{
+                                Option: props => (
+                                    <Option {...props}>
+                                        <img
+                                            src={props.data.icon}
+                                            alt={props.data.label}
+                                        />
+                                        <span style={{marginLeft: 10}}>{props.data.label}</span>
+                                    </Option>
+                                )
+
+                            }}
+                        />
+                    </div>
                 </fieldset>
 
                 <div className="translation-content">
@@ -112,18 +135,43 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
 
 
                 <fieldset>
-                    <label className="translation-header"
-                           htmlFor="id_write_translation">{t('Enter translation')}{user.role < ROLE_ADMIN && ` (${t('English')})`}:</label>
+                    <label
+                        className="translation-header">{t('Enter translation')}{user.role < ROLE_ADMIN && ` (${t('English')})`}:</label>
 
                     {
                         user.role >= ROLE_ADMIN &&
-                        <select name="rite_translation" id="id_write_translation" value={languageToWrite}
-                                onChange={(e) => setLanguageToWrite(e.target.value)}>
-                            {
-                                languageItems.map((item, i) => <option key={i} value={item.value}>{item.title}</option>)
-                            }
+                        <div className="langSelectWrapper">
+                            <Select
+                                value={{
+                                    value: languageToWrite.value,
+                                    label: `${languages.get(languageToWrite)} (${languageToWrite})`
+                                }}
+                                isDisabled={false}
+                                isLoading={false}
+                                isClearable={false}
+                                isRtl={false}
+                                isSearchable={false}
+                                onChange={(option, {action}) => setLanguageToWrite(option.value)}
+                                options={
+                                    Array.from(languages).map(([key, value]) => {
+                                        return {value: key, label: `${value} (${key})`, icon: langCodeToIcon[key]}
+                                    })
+                                }
+                                components={{
+                                    Option: props => (
+                                        <Option {...props}>
+                                            <img
+                                                src={props.data.icon}
+                                                alt={props.data.label}
+                                            />
+                                            <span style={{marginLeft: 10}}>{props.data.label}</span>
+                                        </Option>
+                                    )
 
-                        </select>
+                                }}
+                            />
+                        </div>
+
                     }
                 </fieldset>
 
@@ -133,8 +181,6 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
                               onChange={(e) => setTextToWrite(e.target.value)}/>
                 </div>
 
-
-                {/*<p>{roleIdToText(user.role, user.roleLang)}</p>*/}
                 {
                     possibleActions.length > 0 &&
                     <label className="translation-header">{t('Translation state')}:</label>
@@ -146,7 +192,8 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
                             (
                                 possibleActions.includes(item.value) &&
                                 <div style={{display: "inline"}} onChange={e => setNewState(e.target.value)}>
-                                    <label className={`translation-action${newState === item.value ? ' active' : ''}`}
+                                    <label data-status={item.value}
+                                           className={`translation-action${newState === item.value ? ' active' : ''}`}
                                            htmlFor={`id_radio-${item.value}`}>{item.title}</label>
                                     <input className="translation-action" type="radio" value={item.value}
                                            name="translation-status"
