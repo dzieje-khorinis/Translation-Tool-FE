@@ -206,7 +206,7 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
 
 
                 {
-                    processing ? <div className="spinner"></div>
+                    processing ? <div className="spinner"/>
                         :
                         possibleActions.length > 0 &&
                         <input type="submit" className="translation-save" value={t('Save')}

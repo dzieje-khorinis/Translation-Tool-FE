@@ -1,7 +1,7 @@
 import "./style.scss"
 import {useTranslation} from "react-i18next";
 import MaterialTable from "material-table";
-import {forwardRef, useEffect, useState} from 'react';
+import React, {forwardRef, useEffect, useState} from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -80,6 +80,9 @@ function TranslationsTable({
                     tableRef={tableRef}
                     icons={tableIcons}
                     title={t("Translations")}
+                    components={{
+                        Toolbar: props => (<></>),
+                    }}
                     localization={{
                         header: {
                             actions: t('Actions'),

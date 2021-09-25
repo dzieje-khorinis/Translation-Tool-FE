@@ -5,3 +5,55 @@ section.translation {
   padding: 20px;
   box-sizing: border-box;
 }
+
+tr.MuiTableRow-root {
+  background-color: hsl(217, 36%, 23%);
+  border: 0;
+  color: white;
+
+  &:nth-child(2n+1) {
+    background-color: hsl(217, 36%, 26%);
+  }
+
+  &.MuiTableRow-footer {
+    background-color: hsl(217, 36%, 20%);
+  }
+
+  > td.MuiTableCell-root {
+    color: white;
+    border: 0;
+  }
+
+  > th.MuiTableCell-root {
+    color: white;
+    background-color: hsl(217, 36%, 20%);
+  }
+}
+
+span.MuiButtonBase-root {
+  color: white;
+
+  &:not(.Mui-disabled) {
+    &:hover {
+      color: white;
+      font-weight: bold;
+    }
+
+    &.MuiTableSortLabel-active {
+      color: white;
+      font-weight: bold;
+    }
+  }
+}
+
+svg.MuiSvgIcon-root {
+  color: white;
+}
+
+span.MuiTypography-root {
+  color: white;
+}
+
+.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon > path {
+  color: white;
+}
