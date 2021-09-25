@@ -5,26 +5,93 @@ td:last-of-type {
 table.generic {
   margin: 30px auto;
   background-color: #202E44;
+
   th {
-    padding: 5px;
-    text-align: left;
+    padding: 25px;
+    text-align: center;
     color: white;
+    background-color: hsl(216, 36%, 14%);
   }
-  tr.even {
-    background-color: #16202f;
+
+  tr {
+    background-color: hsl(216, 36%, 22%);
+
+    &.even {
+      background-color: hsl(216, 36%, 18%);
+    }
   }
+
   td {
-    padding: 5px;
+    padding: 25px;
+    text-align: center;
+    &.bigFont {
+      font-size: 40px;
+      padding: 0;
+    }
+    > span.tick {
+      color: green;
+      text-shadow: 1px 1px white, -1px -1px white, 1px -1px white, -1px 1px white;
+    }
+    > span.cross {
+      color: red;
+      text-shadow: 1px 1px white, -1px -1px white, 1px -1px white, -1px 1px white;
+
+    }
   }
+
   p.link {
     cursor: pointer;
     color: #BBB;
+
     &:hover {
       color: #FFF;
     }
   }
 }
 
-p.centered {
+div.centered {
   text-align: center;
+}
+
+span.button {
+  > a {
+    padding: 15px 60px;
+    background: hsl(216, 36%, 18%);
+    display: inline-block;
+    color: #999;
+    text-decoration: none;
+
+    &:hover {
+      color: white;
+      border: 1px solid white;
+      background: hsl(216, 36%, 22%);
+    }
+  }
+}
+
+span.deactivate {
+  padding: 5px;
+  color: white;
+  display: inline-block;
+  background: red;
+  border-radius: 5px;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+    border: 1px solid white;
+
+  }
+}
+
+span.activate {
+  padding: 5px;
+  color: white;
+  display: inline-block;
+  background: green;
+  border-radius: 5px;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+    border: 1px solid white;
+  }
 }

@@ -19,24 +19,23 @@ function SidePane({user, filters, setFilters, aggregations}) {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            setFilters({searchTerm: searchTermTemp})
+            if (searchTermTemp !== filters.searchTerm) {
+                setFilters({searchTerm: searchTermTemp})
+            }
         }, 500)
 
         return () => clearTimeout(delayDebounceFn)
-    }, [searchTermTemp, setFilters])
+    }, [filters.searchTerm, searchTermTemp, setFilters])
 
     const statuses = STATUSES()
     let statusItems = [...statuses.keys()].map(statusCode => {
         return {
             value: statusCode,
-            title: statuses.get(statusCode),  // used for html select
-            label: statuses.get(statusCode),  // used for react-select
+            label: statuses.get(statusCode),
         }
     })
 
-
     const languages = LANGUAGES()
-
     const dataLang = filters.dataLanguage
 
     return (
@@ -165,21 +164,10 @@ function SidePane({user, filters, setFilters, aggregations}) {
                     }}
                     data={[
                         ['', ''],
-                        ...statusItems.map(item => [item.title, item.value && aggregations[item.value] ? aggregations[item.value][0] : 0])
+                        ...statusItems.map(item => [item.label, item.value && aggregations[item.value] ? aggregations[item.value][0] : 0])
                     ]}
                 />
             </div>
-
-
-            {/*<div className="input_wrapper">*/}
-            {/*    <button>{t("SAVE")}</button>*/}
-            {/*    <button>{t("LOAD")}</button>*/}
-            {/*    <button>{t("RESET")}</button>*/}
-
-            {/*    <p>SAVE/LOAD/RESET STATE?</p>*/}
-            {/*    <button>{t("YES")}</button>*/}
-            {/*    <button>{t("NO")}</button>*/}
-            {/*</div>*/}
         </section>
     )
 }

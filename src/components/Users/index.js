@@ -54,10 +54,11 @@ function Users() {
                     <table className="generic">
                         <thead>
                         <tr>
-                            <th>{t('Username')}</th>
+                            <th>{t('User')}</th>
                             <th>{t('Role')}</th>
                             <th>{t('Activated')}</th>
-                            <th>{t('Activation')}</th>
+                            <th>{t('Online')}</th>
+                            <th>{t('Actions')}</th>
                         </tr>
 
                         </thead>
@@ -72,15 +73,17 @@ function Users() {
                                 return <tr key={i} className={className}>
                                     <td>{user.username}</td>
                                     <td>{roleCodeToText(user.role, user.role_related_language)}</td>
-                                    <td>{user.is_active ? t("Yes") : t("No")}</td>
-                                    <td>
+                                    <td className="bigFont">{user.is_active ? <span className="tick">✔</span> : <span className="cross">✘</span>}</td>
+                                    <td></td>
+                                    <td style={{width: "145px"}}>
                                         {
                                             usersProcessed.has(user.id) ?
                                                 <p>...</p> :
                                                 <p onClick={() => userActivation(user.id, !user.is_active, i)}
-                                                   className="link">{user.is_active ? t('Deactivate') : t('Activate')}</p>
+                                                   className="link">{user.is_active ? <span className="deactivate">{t('Deactivate')}</span> : <span className="activate">{t('Activate')}</span>}</p>
                                         }
                                     </td>
+
                                 </tr>
                             })
                         }
@@ -89,7 +92,7 @@ function Users() {
             }
 
 
-            <p className="centered"><Link to={reactPathUserCreate}>{t('Add new user!')}</Link></p>
+            <div className="centered"><span className="button"><Link to={reactPathUserCreate}>{t('Add User')}</Link></span></div>
         </>
     );
 }

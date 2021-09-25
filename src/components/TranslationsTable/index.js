@@ -1,7 +1,7 @@
 import "./style.scss"
 import {useTranslation} from "react-i18next";
 import MaterialTable from "material-table";
-import React, {forwardRef, useEffect, useState} from 'react';
+import React, {forwardRef} from 'react';
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -51,24 +51,10 @@ function TranslationsTable({
                                setTranslationsData,
                                openEditModal,
                                refreshTable,
-                               setRefreshTable
+                               setRefreshTable,
+                               setPageState,
                            }) {
     const {t} = useTranslation('common');
-
-    const [page, setPage] = useState(0)
-
-    useEffect(() => {
-        tableRef.current.onChangePage({}, 0)
-        // tableRef.current.onQueryChange()
-
-    }, [filters, tableRef])
-
-    useEffect(() => {
-        if (refreshTable) {
-            setRefreshTable(false)
-            tableRef.current.onChangePage({}, page)
-        }
-    }, [page, refreshTable, setRefreshTable, tableRef])
 
     let dataLanguage = filters.dataLanguage || 'en'
 
@@ -121,7 +107,8 @@ function TranslationsTable({
                             lookup: {
                                 NEW: <span className="status" data-status="NEW">{t('New')}</span>,
                                 TODO: <span className="status" data-status="TODO">{t('To do')}</span>,
-                                READY_TO_REVIEW: <span className="status" data-status="READY_TO_REVIEW">{t('Ready to review')}</span>,
+                                READY_TO_REVIEW: <span className="status"
+                                                       data-status="READY_TO_REVIEW">{t('Ready to review')}</span>,
                                 NEEDS_WORK: <span className="status" data-status="NEEDS_WORK">{t('Needs work')}</span>,
                                 ACCEPTED: <span className="status" data-status="ACCEPTED">{t('Accepted')}</span>,
                             }
@@ -147,7 +134,7 @@ function TranslationsTable({
                             apiClient.get(apiPathTranslations, requestData).then(({status, data}) => {
                                 setAggregations(data.aggregations)
                                 setTranslationsData(data.data)
-                                setPage(data.page - 1)
+                                setPageState(data.page - 1)
                                 resolve({
                                     data: data.data,
                                     page: data.page - 1,

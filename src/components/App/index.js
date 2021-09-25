@@ -51,6 +51,9 @@ class App extends Component {
             translationsData: [],
             translationEdit: null,
             refreshTable: false,
+            table: {
+                page: 0,
+            }
         }
         if (!!token) {
             apiClient.setAuthorizationHeader(token)
@@ -59,8 +62,14 @@ class App extends Component {
         i18n.changeLanguage(lang)
     }
 
+    setPageState = (page) => {
+        page = page || this.state.table.page
+        this.setState({table: {...this.state.table, page: page}})
+    }
+
     setFilters = (filters) => {
         this.setState({filters: {...this.state.filters, ...filters}})
+        this.tableRef.current.onChangePage({}, 0)
     }
 
     setAggregations = (aggregations) => {
@@ -80,7 +89,7 @@ class App extends Component {
     }
 
     translationEditCallback = () => {
-        this.setRefreshTable(true)
+        this.tableRef.current.onChangePage({}, this.state.table.page)
     }
 
     setRefreshTable = (value) => {
@@ -103,35 +112,6 @@ class App extends Component {
         })
         this.setUserDetails()
     }
-
-
-    // login = (e, requestData) => {
-    //     e.preventDefault()
-    //     // START LOADING SCREEN HERE
-    //     this.setState(state => {
-    //         state.loginForm.processing = true
-    //         return state
-    //     })
-    //
-    //     apiClient.login(requestData).then(({status, data}) => {
-    //         if (status === 200) {
-    //             localStorage.setItem('token', data.token)
-    //             this.setState(state => {
-    //                 state.loggedIn = true
-    //                 state.loginForm.processing = false
-    //                 return state
-    //             })
-    //             this.setUserDetails()
-    //         } else {
-    //             // this.setState({loginFormError: 'Please enter a correct username and password. Note that both fields may be case-sensitive.'})
-    //             this.setState(state => {
-    //                 state.loginForm.processing = false
-    //                 state.loginForm.error = 'Please enter a correct username and password. Note that both fields may be case-sensitive.'
-    //                 return state
-    //             })
-    //         }
-    //     })
-    // }
 
     logout = (e, data) => {
         apiClient.logout()
@@ -187,6 +167,7 @@ class App extends Component {
                                           setFilters={this.setFilters}
                                           aggregations={this.state.aggregations}/>
                                 <TranslationsTable
+                                    setPageState={this.setPageState}
                                     filters={this.state.filters}
                                     tableRef={this.tableRef}
                                     setAggregations={this.setAggregations}

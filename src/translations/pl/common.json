@@ -26,8 +26,11 @@
   "Admin": "Administrator",
   "Guest": "Gość",
 
+  "User": "Użytkownik",
   "Activated": "Aktywowany",
   "Activation": "Aktywacja",
+  "Last activity": "Ostatnia aktywność",
+  "Add User": "Dodaj Użytkownika",
   "Activate": "Aktywuj",
   "Deactivate": "Dezaktywuj",
   "Yes": "Tak",

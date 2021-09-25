@@ -26,8 +26,11 @@
   "Admin": "Admin",
   "Guest": "Guest",
 
+  "User": "User",
   "Activated": "Activated",
   "Activation": "Activation",
+  "Last activity": "Last activity",
+  "Add User": "Add User",
   "Activate": "Activate",
   "Deactivate": "Deactivate",
   "Yes": "Yes",

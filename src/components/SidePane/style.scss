@@ -24,11 +24,13 @@ section.side-pane {
       width: 100%;
 
       > tr {
-        position: relative;
+        td {
+          position: relative;
 
-        td:last-child {
-          text-align-last: right;
-          color: #FFF5;
+          &:last-child {
+            text-align-last: right;
+            color: #FFF5;
+          }
         }
 
         span.statusTitle {
@@ -92,4 +94,8 @@ input.custom_input {
   font-size: 16px;
   box-sizing: border-box;
   width: 100%;
+}
+
+.google-visualization-tooltip {
+  pointer-events: none;
 }

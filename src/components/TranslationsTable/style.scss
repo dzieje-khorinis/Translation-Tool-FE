@@ -63,7 +63,6 @@ tr.MuiTableRow-root {
 
 span.MuiButtonBase-root {
   color: white;
-
   &:not(.Mui-disabled) {
     &:hover {
       color: white;
@@ -77,9 +76,18 @@ span.MuiButtonBase-root {
   }
 }
 
-svg.MuiSvgIcon-root {
-  color: white;
+button.MuiButtonBase-root {
+  &.Mui-disabled {
+    svg.MuiSvgIcon-root {
+      color: #666;
+    }
+  }
+
+  svg.MuiSvgIcon-root {
+    color: white;
+  }
 }
+
 
 span.MuiTypography-root {
   color: white;
