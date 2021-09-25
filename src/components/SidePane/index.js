@@ -132,7 +132,7 @@ function SidePane({user, filters, setFilters, aggregations}) {
                     {
                         statusItems.map((item, i) => <tr key={i}>
                             <td><span data-status={item.value} className="statusCircle"/><span
-                                class="statusTitle">{item.title}</span></td>
+                                class="statusTitle">{item.label}</span></td>
                             <td>{item.value && aggregations[item.value] ? aggregations[item.value][0] : 0}</td>
                             <td>{item.value && aggregations[item.value] ? aggregations[item.value][1] : 0}</td>
                         </tr>)
