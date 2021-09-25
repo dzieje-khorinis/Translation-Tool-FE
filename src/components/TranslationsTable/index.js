@@ -119,11 +119,11 @@ function TranslationsTable({
                             title: t('State'),
                             field: `state_${dataLanguage}`,
                             lookup: {
-                                NEW: t('New'),
-                                TODO: t('To do'),
-                                READY_TO_REVIEW: t('Ready to review'),
-                                NEEDS_WORK: t('Needs work'),
-                                ACCEPTED: t('Accepted'),
+                                NEW: <span className="status" data-status="NEW">{t('New')}</span>,
+                                TODO: <span className="status" data-status="TODO">{t('To do')}</span>,
+                                READY_TO_REVIEW: <span className="status" data-status="READY_TO_REVIEW">{t('Ready to review')}</span>,
+                                NEEDS_WORK: <span className="status" data-status="NEEDS_WORK">{t('Needs work')}</span>,
+                                ACCEPTED: <span className="status" data-status="ACCEPTED">{t('Accepted')}</span>,
                             }
                         }
                     ]}

@@ -27,3 +27,11 @@ export const STATUSES = () => new Map([
     ['NEEDS_WORK', i18n.t('common:Needs work')],
     ['ACCEPTED', i18n.t('common:Accepted')],
 ])
+
+export const STATUS_TO_COLOR = new Map([
+    ['NEW', "#2FDAF770"],
+    ['TODO', "#FFE300A8"],
+    ['READY_TO_REVIEW', "#FF8F00A8"],
+    ['NEEDS_WORK', "#F7422FA8"],
+    ['ACCEPTED', "#3FF72F69"],
+])

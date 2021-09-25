@@ -7,6 +7,7 @@ import {LANGUAGES, ROLE_ADMIN, STATUSES} from "../../common/constants";
 import {langCodeToIcon, langCodeToLangName} from "../../common/utils";
 import Select, {components} from "react-select";
 import FileTree from "../FileTree";
+import {Chart} from "react-google-charts";
 
 const {Option} = components;
 
@@ -129,44 +130,44 @@ function SidePane({user, filters, setFilters, aggregations}) {
 
             <div className="input_wrapper">
                 <table>
-                    <thead>
-                    <tr>
-                        <th>{t('Status')}</th>
-                        <th>{t('Count')}</th>
-                        <th>{t('Total')}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
                     {
-                        statusItems.map((item, i) => <tr className={i % 2 ? "even" : "odd"} key={i}>
-                            <td>{item.title}</td>
+                        statusItems.map((item, i) => <tr key={i}>
+                            <td><span data-status={item.value} className="statusCircle"/><span
+                                class="statusTitle">{item.title}</span></td>
                             <td>{item.value && aggregations[item.value] ? aggregations[item.value][0] : 0}</td>
                             <td>{item.value && aggregations[item.value] ? aggregations[item.value][1] : 0}</td>
                         </tr>)
                     }
-                    </tbody>
                 </table>
 
+                <Chart
+                    width={'100%'}
+                    height={'300px'}
+                    chartType="PieChart"
 
-                {/*<Chart*/}
-                {/*    width={'100%'}*/}
-                {/*    height={'300px'}*/}
-                {/*    backgroundColor={'black'}*/}
-                {/*    chartType="PieChart"*/}
-                {/*    loader={<div>Loading Chart</div>}*/}
-                {/*    data={[*/}
-                {/*        ['Task', 'Hours per Day'],*/}
-                {/*        [t('New'), 11],*/}
-                {/*        [t('To do'), 2],*/}
-                {/*        [t('Ready to review'), 2],*/}
-                {/*        [t('Needs work'), 2],*/}
-                {/*        [t('Accepted'), 7],*/}
-                {/*    ]}*/}
-                {/*    // options={{*/}
-                {/*    //     title: 'My Daily Activities',*/}
-                {/*    // }}*/}
-                {/*    rootProps={{'data-testid': '1'}}*/}
-                {/*/>*/}
+                    backgroundColor="red"
+                    options={{
+                        legend: "none",
+                        chartArea: {
+                            left: 0,
+                            height: 250,
+                            width: 600
+                        },
+                        backgroundColor: "#16202F",
+                        legendTextStyle: {
+                            color: "white",
+                            fontSize: 15,
+                        },
+                        is3D: true,
+                        colors: ["287d98", "b4a828", "b4701e", "ad3a34", "3a7f38"],
+                        sliceVisibilityThreshold: 0,
+
+                    }}
+                    data={[
+                        ['', ''],
+                        ...statusItems.map(item => [item.title, item.value && aggregations[item.value] ? aggregations[item.value][0] : 0])
+                    ]}
+                />
             </div>
 
 

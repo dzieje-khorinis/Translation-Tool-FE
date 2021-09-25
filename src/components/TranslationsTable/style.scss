@@ -7,27 +7,58 @@ section.translation {
 }
 
 tr.MuiTableRow-root {
-  background-color: hsl(217, 36%, 23%);
+  background-color: hsl(216, 36%, 18%);
   border: 0;
   color: white;
 
   &:nth-child(2n+1) {
-    background-color: hsl(217, 36%, 26%);
+    background-color: hsl(216, 36%, 22%);
   }
 
   &.MuiTableRow-footer {
-    background-color: hsl(217, 36%, 20%);
+    background-color: hsl(216, 36%, 14%);
   }
 
   > td.MuiTableCell-root {
     color: white;
     border: 0;
+
+    span.status {
+      padding: 5px;
+      border-radius: 5px;
+
+      &[data-status="NEW"] {
+        background: #2FDAF770;
+      }
+
+      &[data-status="TODO"] {
+        background: #FFE300A8;
+      }
+
+      &[data-status="READY_TO_REVIEW"] {
+        background: #FF8F00A8;
+      }
+
+      &[data-status="NEEDS_WORK"] {
+        background: #F7422FA8;
+      }
+
+      &[data-status="ACCEPTED"] {
+        background: #3FF72F69;
+      }
+    }
   }
 
   > th.MuiTableCell-root {
     color: white;
-    background-color: hsl(217, 36%, 20%);
+    background-color: hsl(216, 36%, 14%);
+
+    &.MuiTableCell-head:last-child {
+      text-align: center;
+      padding-left: 36px;
+    }
   }
+
 }
 
 span.MuiButtonBase-root {
