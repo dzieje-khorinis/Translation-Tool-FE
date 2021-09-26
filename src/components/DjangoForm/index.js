@@ -46,7 +46,8 @@ class DjangoForm extends Component {
             <div className="form_wrapper">
                 <h2>{this.props.title}</h2>
 
-                {this.props.redirectUrl && this.state.redirecting ? (<Redirect push to={this.props.redirectUrl}/>) : null}
+                {this.props.redirectUrl && this.state.redirecting ? (
+                    <Redirect push to={this.props.redirectUrl}/>) : null}
 
                 {
                     this.state.errors.non_field_errors &&
@@ -62,7 +63,8 @@ class DjangoForm extends Component {
                                 <label htmlFor={`id_${field.id}`}>{field.title}:</label>
                                 {
                                     field.tag === "input" &&
-                                    <input id={`id_${field.id}`} name={field.id} type={field.type || "text"} required={field.required}
+                                    <input id={`id_${field.id}`} name={field.id} type={field.type || "text"}
+                                           required={field.required}
                                            ref={this.state.refs[field.id]} autoComplete={field.autoComplete}/>
                                 }
                                 {
@@ -70,7 +72,7 @@ class DjangoForm extends Component {
                                     <select name={field.id} id={`id_${field.id}`} ref={this.state.refs[field.id]}>
                                         {
                                             field.options.map((option, i) => <option key={i}
-                                                value={option.value}>{option.title}</option>)
+                                                                                     value={option.value}>{option.title}</option>)
                                         }
                                     </select>
                                 }

@@ -19,8 +19,8 @@ section.translation-editor {
   }
 
   .translation-wrapper {
-    background: #202E44;
-    border: 1px solid white;
+    background: var(--bgcolor4);
+    border: var(--border1);
     width: 70%;
     height: 70%;
     padding: 30px;
@@ -47,15 +47,15 @@ section.translation-editor {
     }
 
     label.translation-action {
-      background: #16202F;
-      color: #202E44;
+      background: var(--bgcolor1);
+      color: var(--bgcolor4);
       border: none;
       border-radius: 3px;
       padding: .4em 1em;
       margin: 0 10px;
       &:hover, &.active {
-        color: white;
-        border: 1px solid white;
+        color: var(--color1);
+        border: var(--border1);
       }
 
       &[data-status="NEW"] {
@@ -121,7 +121,7 @@ section.translation-editor {
 
     h3.translation-header {
       //margin: 30px 0 10px 0;
-      color: #FFF;
+      color: var(--color1);
       font-weight: bold;
       margin-bottom: 0;
     }
@@ -132,7 +132,7 @@ section.translation-editor {
     }
 
     label.translation-header {
-      color: #FFF;
+      color: var(--color1);
       font-weight: bold;
       margin-bottom: 15px;
     }
@@ -144,14 +144,14 @@ section.translation-editor {
       height: 45px;
       font-size: 16px;
       padding: 5px 0;
-      background: #16202F;
+      background: var(--bgcolor1);
       border: none;
-      color: #999;
+      color: var(--color4);
       cursor: pointer;
       &:hover {
-        background: #000E22;
-        color: white;
-        border: 1px solid white;
+        background: var(--bgcolor5);
+        color: var(--color1);
+        border: var(--border1);
       }
     }
 
@@ -165,20 +165,20 @@ section.translation-editor {
       width: 80%;
       height: 150px;
       margin-bottom: 30px;
-      background: #404F66;
+      background: var(--bgcolor6);
       padding: 5px;
 
       textarea {
         width: 100%;
         min-height: 100%;
         border: none;
-        background: #404F66;
+        background: var(--bgcolor6);
         font-size: 15px;
-        color: #FFF;
+        color: var(--color1);
         resize: none;
 
         &[disabled] {
-          color: #BBB;
+          color: var(--color5);
         }
       }
     }

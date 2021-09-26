@@ -17,7 +17,7 @@ section.account-panel {
     flex-direction: column;
     height: 90%;
     width: 60%;
-    background: #202E44;
+    background: var(--bgcolor4);
 
     div.account-panel-links-wrapper {
       display: -webkit-box;
@@ -32,9 +32,9 @@ section.account-panel {
         width: 200px;
         padding: 12px 0;
         margin: 0 auto;
-        background: #16202F;
+        background: var(--bgcolor1);
         border: none;
-        color: #999;
+        color: var(--color4);
         font-size: 15px;
         text-decoration: none;
         box-sizing: border-box;
@@ -43,8 +43,8 @@ section.account-panel {
 
         &:hover {
           cursor: pointer;
-          background: #05101E;
-          color: #FFF;
+          background: var(--bgcolor5);
+          color: var(--color1);
         }
       }
     }
@@ -54,7 +54,7 @@ section.account-panel {
       margin: 40px auto 0;
       text-align: center;
       font-size: 35px;
-      color: #FFF;
+      color: var(--color1);
     }
 
     h2.account-panel-header {
@@ -74,13 +74,13 @@ section.account-panel {
 
       span.account-panel-key {
         font-size: 14px;
-        color: #DDD;
+        color: var(--color3);
       }
 
       span.account-panel-value {
 
         font-size: 20px;
-        color: #FFF;
+        color: var(--color1);
 
       }
     }

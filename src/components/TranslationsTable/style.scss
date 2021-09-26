@@ -1,26 +1,26 @@
 section.translation {
   width: 100%;
   min-height: calc(100vh - 61px);
-  background: #202E44;
+  background: var(--bgcolor4);
   padding: 20px;
   box-sizing: border-box;
 }
 
 tr.MuiTableRow-root {
-  background-color: hsl(216, 36%, 18%);
+  background-color: var(--bgcolor2);
   border: 0;
-  color: white;
+  color: var(--color1);
 
   &:nth-child(2n+1) {
-    background-color: hsl(216, 36%, 22%);
+    background-color: var(--bgcolor3);
   }
 
   &.MuiTableRow-footer {
-    background-color: hsl(216, 36%, 14%);
+    background-color: var(--bgcolor1);
   }
 
   > td.MuiTableCell-root {
-    color: white;
+    color: var(--color1);
     border: 0;
 
     span.status {
@@ -50,8 +50,8 @@ tr.MuiTableRow-root {
   }
 
   > th.MuiTableCell-root {
-    color: white;
-    background-color: hsl(216, 36%, 14%);
+    color: var(--color1);
+    background-color: var(--bgcolor1);
 
     &.MuiTableCell-head:last-child {
       text-align: center;
@@ -62,15 +62,15 @@ tr.MuiTableRow-root {
 }
 
 span.MuiButtonBase-root {
-  color: white;
+  color: var(--color1);
   &:not(.Mui-disabled) {
     &:hover {
-      color: white;
+      color: var(--color1);
       font-weight: bold;
     }
 
     &.MuiTableSortLabel-active {
-      color: white;
+      color: var(--color1);
       font-weight: bold;
     }
   }
@@ -84,15 +84,15 @@ button.MuiButtonBase-root {
   }
 
   svg.MuiSvgIcon-root {
-    color: white;
+    color: var(--color1);
   }
 }
 
 
 span.MuiTypography-root {
-  color: white;
+  color: var(--color1);
 }
 
 .MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon > path {
-  color: white;
+  color: var(--color1);
 }

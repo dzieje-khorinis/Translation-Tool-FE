@@ -12,7 +12,7 @@ import {Chart} from "react-google-charts";
 const {Option} = components;
 
 
-function SidePane({user, filters, setFilters, aggregations}) {
+function SidePane({user, filters, setFilters, aggregations, themeName}) {
     const {t} = useTranslation('common');
 
     const [searchTermTemp, setSearchTermTemp] = useState('')
@@ -152,7 +152,7 @@ function SidePane({user, filters, setFilters, aggregations}) {
                             height: 250,
                             width: 600
                         },
-                        backgroundColor: "#16202F",
+                        backgroundColor: themeName === "dark-theme" ? "#16202F" : "#FFF",
                         legendTextStyle: {
                             color: "white",
                             fontSize: 15,

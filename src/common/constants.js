@@ -35,3 +35,8 @@ export const STATUS_TO_COLOR = new Map([
     ['NEEDS_WORK', "#F7422FA8"],
     ['ACCEPTED', "#3FF72F69"],
 ])
+
+export const THEMES = [
+    "dark-theme",
+    "light-theme",
+]

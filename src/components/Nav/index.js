@@ -5,15 +5,20 @@ import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {ROLE_COORDINATOR} from "../../common/constants";
 import LangChange from "../LangChange";
+import logoutIcon from "../../static/images/logout.svg"
+import usersIcon from "../../static/images/users.svg"
+import profileIcon from "../../static/images/profile.svg"
+import houseIcon from "../../static/images/house.svg"
+import dayNightIcon from "../../static/images/daynight.svg"
 
 
-function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick}) {
+function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick, changeTheme}) {
     const {t} = useTranslation('common');
 
     return <nav>
 
         <Link to={reactPathIndex} className="logo">
-            <div>{loggedIn && t('Homepage')}</div>
+            <div>{loggedIn && <><img alt={t('Homepage')} src={houseIcon}/><span>{t('Homepage')}</span></>}</div>
         </Link>
 
         <ul>
@@ -22,10 +27,11 @@ function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick}) {
                 <>
                     {
                         user.role >= ROLE_COORDINATOR &&
-                        <li><Link to={reactPathUsers} className="link">{t('Users')}</Link></li>
+                        <li><Link to={reactPathUsers} className="link"><img alt={t('Users')} src={usersIcon}/></Link></li>
                     }
-                    <li><Link to={reactPathProfile} className="link">{t('Profile')}</Link></li>
-                    <li><span onClick={logoutClick} className="link">{t('Logout')}</span></li>
+                    <li><Link to={reactPathProfile} className="link"><img alt={t('Profile')} src={profileIcon}/></Link></li>
+                    <li><span onClick={changeTheme} className="link"><img alt={t('Change Theme')} src={dayNightIcon}/></span></li>
+                    <li><span onClick={logoutClick} className="link"><img alt={t('Logout')} src={logoutIcon}/></span></li>
                 </>
             }
             <li>
@@ -42,6 +48,7 @@ function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick}) {
 Nav.propTypes = {
     languageChange: PropTypes.func.isRequired,
     logoutClick: PropTypes.func.isRequired,
+    changeTheme: PropTypes.func.isRequired,
     interfaceLang: PropTypes.string,
     user: PropTypes.exact({
         name: PropTypes.string,

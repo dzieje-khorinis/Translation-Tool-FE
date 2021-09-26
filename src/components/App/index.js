@@ -13,7 +13,7 @@ import {Component, createRef} from "react";
 import Nav from "../Nav";
 import {apiClient} from "../../common/apiClient";
 import i18n from "i18next"
-import {LANG_EN, ROLE_GUEST} from "../../common/constants";
+import {LANG_EN, ROLE_GUEST, THEMES} from "../../common/constants";
 import {convertedRole} from "../../common/utils";
 import Profile from "../Profile";
 import PasswordChange from "../PasswordChange";
@@ -53,13 +53,18 @@ class App extends Component {
             refreshTable: false,
             table: {
                 page: 0,
-            }
+            },
+            theme: 0,
         }
         if (!!token) {
             apiClient.setAuthorizationHeader(token)
         }
         this.tableRef = createRef()
         i18n.changeLanguage(lang)
+    }
+
+    changeTheme = () => {
+        this.setState({theme: (this.state.theme + 1) % THEMES.length})
     }
 
     setPageState = (page) => {
@@ -148,7 +153,7 @@ class App extends Component {
         }
 
         return (
-            <div>
+            <div className={THEMES[this.state.theme]}>
                 <BrowserRouter>
                     <header>
                         <Nav
@@ -157,6 +162,7 @@ class App extends Component {
                             interfaceLang={this.state.interfaceLang}
                             languageChange={languageChange}
                             logoutClick={this.logout}
+                            changeTheme={this.changeTheme}
                         />
                     </header>
 
@@ -165,7 +171,8 @@ class App extends Component {
                             <section className="home">
                                 <SidePane user={this.state.user} filters={this.state.filters}
                                           setFilters={this.setFilters}
-                                          aggregations={this.state.aggregations}/>
+                                          aggregations={this.state.aggregations}
+                                          themeName={THEMES[this.state.theme]}/>
                                 <TranslationsTable
                                     setPageState={this.setPageState}
                                     filters={this.state.filters}

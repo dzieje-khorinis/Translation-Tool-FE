@@ -19,8 +19,13 @@ section.side-pane {
     position: relative;
     width: 100%;
 
+    input {
+      border-color: hsl(0, 0%, 80%);
+      border-radius: 4px;
+    }
+
     table {
-      color: white;
+      color: var(--color1);
       width: 100%;
 
       > tr {
@@ -71,7 +76,7 @@ section.side-pane {
 
     label {
       display: block;
-      color: white;
+      color: var(--color1);
       font-weight: bold;
     }
 

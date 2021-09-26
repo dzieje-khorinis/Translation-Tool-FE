@@ -62,12 +62,12 @@ section.form_section {
         width: 100%;
         height: 50px;
         margin: 10px 0 20px;
-        background: #16202F;
-        border: 2px solid #16202F;
+        background: var(--bgcolor1);
+        border: 2px solid var(--bgcolor1);
         border-radius: 30px;
         font-size: 16px;
         font-weight: 700;
-        color: #FFF;
+        color: var(--color1);
         transition: background-color .5s, color .5s;
       }
 

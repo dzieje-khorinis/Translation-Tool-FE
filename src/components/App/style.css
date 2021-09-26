@@ -1,44 +1,82 @@
+.light-theme {
+    --bgcolor1: #FFF; /*red;*/
+    --bgcolor2: #DDD; /*green;*/
+    --bgcolor3: #CCC; /*blue;*/
+    --bgcolor4: #EEE; /*yellow;*/
+    --bgcolor5: #BBB;
+    --bgcolor6: #D5D5D5;
+    --color1: black;
+    --color2: #333;
+    --color3: #444;
+    --color4: #555;
+    --color5: #999;
+    --black-to-white-filter: none;
+    --border1: 1px solid black;
+
+
+}
+
+.dark-theme {
+    --bgcolor1: hsl(216, 36%, 14%);
+    --bgcolor2: hsl(216, 36%, 18%);
+    --bgcolor3: hsl(216, 36%, 22%);
+    --bgcolor4: hsl(216, 36%, 20%);
+    --bgcolor5: hsl(216, 36%, 10%);
+    --bgcolor6: hsl(216, 23%, 33%);
+    --color1: white;
+    --color2: #A6A3A3;
+    --color3: #DDD;
+    --color4: #999;
+    --color5: #BBB;
+    --black-to-white-filter: invert(100%) sepia(1%) saturate(876%) hue-rotate(65deg) brightness(111%) contrast(100%);
+    --border1: 1px solid white;
+}
+
+* {
+    transition: background .5s;
+}
+
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 section.home {
-  display: -webkit-box;
-  display: flex;
-  min-height: calc(100% - 61px);
+    display: -webkit-box;
+    display: flex;
+    min-height: calc(100% - 61px);
 }
