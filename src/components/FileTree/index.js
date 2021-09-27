@@ -19,7 +19,7 @@ function FileTree({rootUrl, getChildrenUrl, filters, setFilters}) {
 
     return (
         <div className="tree">
-            <p className="legend">{t('Click tick to select, click arrow to open/close')}</p>
+            <p className="legend">{t('To select catalog use CTRL+CLICK')}</p>
             {
                 rootData &&
                 <FileTreeNode

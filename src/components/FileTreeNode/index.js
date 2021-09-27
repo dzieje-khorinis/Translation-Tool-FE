@@ -9,6 +9,13 @@ function FileTreeNode({data, getChildrenUrl, depth, filters, setFilters}) {
     const [opening, setOpening] = useState(false)
     const [children, setChildren] = useState([])
 
+    function handleClick(e) {
+        if (e.ctrlKey || data.leaf) {
+            select()
+        } else {
+            open()
+        }
+    }
 
     function select() {
         if (filters.path === data.path) {
@@ -54,27 +61,22 @@ function FileTreeNode({data, getChildrenUrl, depth, filters, setFilters}) {
         nodeTypeSymbol = opened ? "📂" : "📁"
     }
 
-    let nodeSelectClass = "nodeSelect"
+    let nodeNameClass = "nodeName"
     if (filters.path === data.path) {
-        nodeSelectClass = `${nodeSelectClass} selected`
+        nodeNameClass = `${nodeNameClass} selected`
     }
 
     return (
         <div className="treeNode" style={{marginLeft: depth * 10}}>
             <p className="treeRoot">
-                <span onClick={(e) => {
-                    open()
-                }}>
+                <span onClick={e => handleClick(e)}>
                     {
                         !data.leaf &&
                         <span className={nodeArrowClass}>{nodeArrowSymbol}</span>
                     }
                     <span className="nodeType">{nodeTypeSymbol}</span>
-                    <span className="nodeName">{data.name}</span>
+                    <span className={nodeNameClass}>{data.name}</span>
                 </span>
-                <span className={nodeSelectClass} onClick={(e) => {
-                    select()
-                }}>✔</span>
             </p>
             {
                 opened &&

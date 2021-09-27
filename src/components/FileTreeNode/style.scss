@@ -7,20 +7,12 @@ p.treeRoot {
   display: inline-block;
 }
 
-span.nodeSelect {
-  color: gray;
-
-  &:hover {
-    color: lightgray;
-  }
-
-  &.selected {
-    color: var(--color1);
-  }
-}
-
 span.nodeName {
   margin-right: 5px;
+
+  &.selected {
+    color: green;
+  }
 }
 
 @keyframes rotation {
