@@ -13,7 +13,7 @@ import {Component, createRef} from "react";
 import Nav from "../Nav";
 import {apiClient} from "../../common/apiClient";
 import i18n from "i18next"
-import {LANG_EN, ROLE_GUEST, THEMES} from "../../common/constants";
+import {LANG_EN, ROLE_GUEST, ROLE_ADMIN, THEMES} from "../../common/constants";
 import {convertedRole} from "../../common/utils";
 import Profile from "../Profile";
 import PasswordChange from "../PasswordChange";
@@ -38,6 +38,8 @@ class App extends Component {
                 role: ROLE_GUEST,
                 roleLang: '',
             },
+            userInitialized: false,
+
             interfaceLang: lang,
             filters: {
                 dataLanguage: "en",
@@ -128,14 +130,24 @@ class App extends Component {
         // TODO handle request failure
         return apiClient.get(apiPathUserDetails).then(({status, data}) => {
             if (status === 200) {
-                this.setState({
-                    user: {
-                        name: data.username,
-                        email: data.email,
-                        role: convertedRole(data.role),
-                        roleLang: data.role_related_language,
+                let user = {
+                    name: data.username,
+                    email: data.email,
+                    role: convertedRole(data.role),
+                    roleLang: data.role_related_language,
+                }
+                let newState = {
+                    user: user,
+                    userInitialized: true,
+                }
+                if (user.role < ROLE_ADMIN) {
+                    // no dataLanguage selection widget so we set it based on roleLang
+                    newState.filters = {
+                        ...this.state.filters,
+                        dataLanguage: user.roleLang
                     }
-                })
+                }
+                this.setState(newState)
             } else {
                 this.logout()
             }
@@ -150,6 +162,11 @@ class App extends Component {
             i18n.changeLanguage(lang)
             apiClient.setAcceptLanguageHeader(lang)
             // setCookie("django_language", lang)
+        }
+        if (!this.state.userInitialized) {
+            return (
+                <div className={THEMES[this.state.theme]}></div>
+            )
         }
 
         return (

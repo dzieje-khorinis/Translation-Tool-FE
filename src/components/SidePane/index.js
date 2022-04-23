@@ -129,14 +129,16 @@ function SidePane({user, filters, setFilters, aggregations, themeName}) {
 
             <div className="input_wrapper">
                 <table>
+                    <tbody>
                     {
                         statusItems.map((item, i) => <tr key={i}>
                             <td><span data-status={item.value} className="statusCircle"/><span
-                                class="statusTitle">{item.label}</span></td>
+                                className="statusTitle">{item.label}</span></td>
                             <td>{item.value && aggregations[item.value] ? aggregations[item.value][0] : 0}</td>
                             <td>{item.value && aggregations[item.value] ? aggregations[item.value][1] : 0}</td>
                         </tr>)
                     }
+                    </tbody>
                 </table>
 
                 <Chart

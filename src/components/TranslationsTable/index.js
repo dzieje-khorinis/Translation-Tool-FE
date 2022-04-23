@@ -123,7 +123,7 @@ function TranslationsTable({
                     ]}
                     data={query =>
                         new Promise((resolve, reject) => {
-                            console.log('query', query)
+                            console.log('query', query, 'filters', filters)
                             let requestData = {
                                 per_page: query.pageSize,
                                 page: query.page + 1,

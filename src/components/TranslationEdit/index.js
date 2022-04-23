@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import {apiClient} from "../../common/apiClient";
 import {apiPathTranslationSave} from "../../common/routes";
 import Select, {components} from "react-select";
-import {langCodeToIcon} from "../../common/utils";
+import {langCodeToIcon, langCodeToLangName} from "../../common/utils";
 
 const {Option} = components;
 
@@ -136,7 +136,7 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
 
                 <fieldset>
                     <label
-                        className="translation-header">{t('Enter translation')}{user.role < ROLE_ADMIN && ` (${t('English')})`}:</label>
+                        className="translation-header">{t('Enter translation')}{user.role < ROLE_ADMIN && ` (${langCodeToLangName(languageToWrite)})`}:</label>
 
                     {
                         user.role >= ROLE_ADMIN &&
