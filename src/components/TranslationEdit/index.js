@@ -6,6 +6,7 @@ import {apiClient} from "../../common/apiClient";
 import {apiPathTranslationSave} from "../../common/routes";
 import Select, {components} from "react-select";
 import {langCodeToIcon, langCodeToLangName} from "../../common/utils";
+import closeIcon from "../../static/images/x-solid.svg"
 
 const {Option} = components;
 
@@ -89,6 +90,8 @@ function TranslationEdit({user, dataLanguage, translationData, closeEditModal, e
     return (
         <section className="translation-editor" onClick={e => closeEditModal()}>
             <div className="translation-wrapper" onClick={e => e.stopPropagation()}>
+                <span onClick={e => closeEditModal()} className="link close_modal"><img title={t('Close')} src={closeIcon}/></span>
+
                 <h3 className="translation-header">{translationData.key}<span id="translation-status"
                                                                               data-status={statusCode}>{statuses.get(statusCode)}</span>
                 </h3>

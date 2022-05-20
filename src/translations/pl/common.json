@@ -18,9 +18,9 @@
   "New password confirmation": "Potwierdzenie nowego hasła",
   "CHANGE": "ZMIEŃ",
 
-  "Login": "Zaloguj",
+  "Login": "Zaloguj się",
   "Password": "Hasło",
-  "LOGIN": "ZALOGUJ",
+  "LOGIN": "ZALOGUJ SIĘ",
 
   "Translator": "Tłumacz",
   "Coordinator": "Koordynator",
@@ -82,5 +82,6 @@
   "ADD USER": "DODAJ UŻYTKOWNIKA",
 
   "Scroll to top": "Przewiń na górę",
-  "Are you sure you want to log out?": "Czy na pewno chcesz się wylogować?"
+  "Are you sure you want to log out?": "Czy na pewno chcesz się wylogować?",
+  "Close": "Zamknij"
 }

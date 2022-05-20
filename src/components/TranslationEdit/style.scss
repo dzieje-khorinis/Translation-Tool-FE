@@ -46,6 +46,36 @@ section.translation-editor {
       }
     }
 
+    .close_modal {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+
+    span.link {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      color: var(--color4);
+      text-decoration: none;
+
+      img {
+        width: 30px;
+        filter: invert(63%) sepia(12%) saturate(0%) hue-rotate(207deg) brightness(95%) contrast(86%);
+
+        &:hover {
+          filter: var(--black-to-white-filter);
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: var(--color1);
+      }
+    }
+
     label.translation-action {
       background: var(--bgcolor1);
       color: var(--bgcolor4);
@@ -100,6 +130,7 @@ section.translation-editor {
         padding: 5px;
         font-size: 10px;
         vertical-align: top;
+        margin-left: 10px;
       }
 
       &[data-status="NEW"] {
