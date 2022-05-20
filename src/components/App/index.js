@@ -163,7 +163,7 @@ class App extends Component {
             apiClient.setAcceptLanguageHeader(lang)
             // setCookie("django_language", lang)
         }
-        if (!this.state.userInitialized) {
+        if (this.state.loggedIn && !this.state.userInitialized) {
             return (
                 <div className={THEMES[this.state.theme]}></div>
             )

@@ -96,3 +96,8 @@ span.MuiTypography-root {
 .MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon > path {
   color: var(--color1);
 }
+
+.text-found {
+  font-weight: bold;
+  text-decoration: underline;
+}

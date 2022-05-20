@@ -69,7 +69,7 @@ export function thickPartOfText(text, part) {
         return text
     }
     let rightIndex = leftIndex + part.length
-    return <>{text.slice(0, leftIndex)}<b>{text.slice(leftIndex, rightIndex)}</b>{text.slice(rightIndex)}</>
+    return <>{text.slice(0, leftIndex)}<span class="text-found">{text.slice(leftIndex, rightIndex)}</span>{text.slice(rightIndex)}</>
 }
 
 export function setCookie(cname, cvalue, exdays) {
