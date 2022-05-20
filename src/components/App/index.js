@@ -23,6 +23,7 @@ import UserCreate from "../UserCreate";
 import SidePane from "../SidePane";
 import TranslationsTable from "../TranslationsTable";
 import TranslationEdit from "../TranslationEdit";
+import ScrollToTop from '../ScrollToTop';
 
 
 class App extends Component {
@@ -210,6 +211,7 @@ class App extends Component {
                                         editCallback={this.translationEditCallback}
                                     />
                                 }
+                                <ScrollToTop/>
                             </section>
                         </AuthRoute>
 

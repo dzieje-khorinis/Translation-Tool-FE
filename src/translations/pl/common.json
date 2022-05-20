@@ -2,6 +2,7 @@
   "Homepage": "Strona główna",
   "Users": "Użytkownicy",
   "Profile": "Profil",
+  "Change theme": "Zmień motyw",
   "Logout": "Wyloguj",
 
   "My Profile": "Mój Profil",
@@ -78,5 +79,7 @@
   "Add user": "Dodaj użytkownika",
   "Role related language": "Język powiązany z rolą",
   "Password confirmation": "Potwierdzenie hasła",
-  "ADD USER": "DODAJ UŻYTKOWNIKA"
+  "ADD USER": "DODAJ UŻYTKOWNIKA",
+
+  "Scroll to top": "Przewiń na górę"
 }

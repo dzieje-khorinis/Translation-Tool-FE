@@ -9,8 +9,8 @@ function LangChange({languageChange, interfaceLang}) {
     const [hover, setHover] = useState(false)
 
     const languageToDetails = {
-        'pl': {src: pl, alt: "polski (PL)", code: 'pl'},
-        'en': {src: en, alt: "English (EN)", code: 'en'},
+        'pl': {src: pl, title: "polski (PL)", code: 'pl'},
+        'en': {src: en, title: "English (EN)", code: 'en'},
     }
 
     const [currentLang, setCurrentLang] = useState(languageToDetails[interfaceLang])
@@ -25,14 +25,14 @@ function LangChange({languageChange, interfaceLang}) {
 
     return <div className="langChange" onMouseEnter={e => setHover(true)}
                 onMouseLeave={e => setHover(false)}>
-        <img src={currentLang.src} alt={currentLang.alt}/>
+        <img src={currentLang.src} title={currentLang.title}/>
         <span>{hover ? "▲" : "▼"}</span>
         {
             hover &&
             <div className="langList">
                 {
                     otherLangs.map((langDetails, i) => {
-                        return <img key={i} src={langDetails.src} alt={langDetails.alt}
+                        return <img key={i} src={langDetails.src} title={langDetails.title}
                                     onClick={e => languageChangeHandler(langDetails.code)}
                         />
                     })

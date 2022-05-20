@@ -18,7 +18,7 @@ function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick, change
     return <nav>
 
         <Link to={reactPathIndex} className="logo">
-            <div>{loggedIn && <><img alt={t('Homepage')} src={houseIcon}/><span>{t('Homepage')}</span></>}</div>
+            <div>{loggedIn && <><img title={t('Homepage')} src={houseIcon}/><span>{t('Homepage')}</span></>}</div>
         </Link>
 
         <ul>
@@ -27,11 +27,11 @@ function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick, change
                 <>
                     {
                         user.role >= ROLE_COORDINATOR &&
-                        <li><Link to={reactPathUsers} className="link"><img alt={t('Users')} src={usersIcon}/></Link></li>
+                        <li><Link to={reactPathUsers} className="link"><img title={t('Users')} src={usersIcon}/></Link></li>
                     }
-                    <li><Link to={reactPathProfile} className="link"><img alt={t('Profile')} src={profileIcon}/></Link></li>
-                    <li><span onClick={changeTheme} className="link"><img alt={t('Change Theme')} src={dayNightIcon}/></span></li>
-                    <li><span onClick={logoutClick} className="link"><img alt={t('Logout')} src={logoutIcon}/></span></li>
+                    <li><Link to={reactPathProfile} className="link"><img title={t('Profile')} src={profileIcon}/></Link></li>
+                    <li><span onClick={changeTheme} className="link"><img title={t('Change theme')} src={dayNightIcon}/></span></li>
+                    <li><span onClick={logoutClick} className="link"><img title={t('Logout')} src={logoutIcon}/></span></li>
                 </>
             }
             <li>

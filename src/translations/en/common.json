@@ -2,6 +2,7 @@
   "Homepage": "Homepage",
   "Users": "Users",
   "Profile": "Profile",
+  "Change theme": "Change theme",
   "Logout": "Logout",
 
   "My Profile": "My Profile",
@@ -78,5 +79,7 @@
   "Add user": "Add user",
   "Role related language": "Role related language",
   "Password confirmation": "Password confirmation",
-  "ADD USER": "ADD USER"
+  "ADD USER": "ADD USER",
+
+  "Scroll to top": "Scroll to top"
 }
