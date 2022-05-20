@@ -32,10 +32,6 @@ function ScrollToTop() {
         <>
         {
             visible &&
-            // <button className='scroll_to_top'>
-            //     <FaArrowCircleUp onClick={scrollToTop} style={{size: 20}} />
-            // </button>
-
             <span className='link scroll_to_top' onClick={scrollToTop}><img title={t('Scroll to top')} src={circleArrowUpSolidIcon}/></span>
         }
         </>

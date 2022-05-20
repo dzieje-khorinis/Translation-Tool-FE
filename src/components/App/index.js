@@ -24,6 +24,7 @@ import SidePane from "../SidePane";
 import TranslationsTable from "../TranslationsTable";
 import TranslationEdit from "../TranslationEdit";
 import ScrollToTop from '../ScrollToTop';
+import LogoutConfirmation from '../LogoutConfirmation';
 
 
 class App extends Component {
@@ -54,6 +55,7 @@ class App extends Component {
             translationsData: [],
             translationEdit: null,
             refreshTable: false,
+            showLogoutConfirmation: false,
             table: {
                 page: 0,
             },
@@ -121,10 +123,14 @@ class App extends Component {
         this.setUserDetails()
     }
 
-    logout = (e, data) => {
+    logout = () => {
         apiClient.logout()
         localStorage.removeItem('token')
-        this.setState({loggedIn: false})
+        this.setState({loggedIn: false, showLogoutConfirmation: false})
+    }
+
+    setShowLogoutConfirmation = (value) => {
+        this.setState({showLogoutConfirmation: value})
     }
 
     setUserDetails = () => {
@@ -179,7 +185,7 @@ class App extends Component {
                             loggedIn={this.state.loggedIn}
                             interfaceLang={this.state.interfaceLang}
                             languageChange={languageChange}
-                            logoutClick={this.logout}
+                            logoutClick={e => this.setShowLogoutConfirmation(true)}
                             changeTheme={this.changeTheme}
                         />
                     </header>
@@ -212,6 +218,14 @@ class App extends Component {
                                     />
                                 }
                                 <ScrollToTop/>
+                                {
+                                    this.state.showLogoutConfirmation &&
+                                    <LogoutConfirmation
+                                        setShowLogoutConfirmation={this.setShowLogoutConfirmation}
+                                        logout={this.logout}
+                                    />
+                                }
+                                
                             </section>
                         </AuthRoute>
 
