@@ -188,6 +188,14 @@ class App extends Component {
                             logoutClick={e => this.setShowLogoutConfirmation(true)}
                             changeTheme={this.changeTheme}
                         />
+                        <ScrollToTop/>
+                        {
+                            this.state.showLogoutConfirmation &&
+                            <LogoutConfirmation
+                                setShowLogoutConfirmation={this.setShowLogoutConfirmation}
+                                logout={this.logout}
+                            />
+                        }
                     </header>
 
                     <Switch>
@@ -217,15 +225,6 @@ class App extends Component {
                                         editCallback={this.translationEditCallback}
                                     />
                                 }
-                                <ScrollToTop/>
-                                {
-                                    this.state.showLogoutConfirmation &&
-                                    <LogoutConfirmation
-                                        setShowLogoutConfirmation={this.setShowLogoutConfirmation}
-                                        logout={this.logout}
-                                    />
-                                }
-                                
                             </section>
                         </AuthRoute>
 
