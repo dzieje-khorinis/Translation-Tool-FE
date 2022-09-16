@@ -83,5 +83,11 @@
 
   "Scroll to top": "Przewiń na górę",
   "Are you sure you want to log out?": "Czy na pewno chcesz się wylogować?",
-  "Close": "Zamknij"
+  "Close": "Zamknij",
+  "History": "Historia",
+  "Changes": "Zmiany",
+  "Field": "Pole",
+  "Old value": "Stara wartość",
+  "New value": "Nowa wartość",
+  "Created": "Utworzono"
 }

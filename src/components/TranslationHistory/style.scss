@@ -1,0 +1,35 @@
+span.bold {
+    font-weight: bold;
+    &.old {
+        color: red;
+    }
+    &.new {
+        color: green;
+    }
+}
+
+table.diffTable {
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+    th, td {
+        border: 1px solid var(--bgcolor1);
+        padding: 5px 10px;
+    }
+    .languageBag {
+        font-weight: bold;
+        vertical-align: top;
+        font-size: 12px;
+        border: 1px solid yellow;
+        border-radius: 6px;
+        padding: 0px 2px;
+        margin-left: 2px;
+    }
+    
+}
+
+section.translation-editor .translation-wrapper table.diffTable span[data-status] {
+    font-size: 14px;
+    vertical-align: baseline;
+    margin-left: 0;
+}

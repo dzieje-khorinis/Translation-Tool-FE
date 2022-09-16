@@ -83,5 +83,11 @@
 
   "Scroll to top": "Scroll to top",
   "Are you sure you want to log out?": "Are you sure you want to log out?",
-  "Close": "Close"
+  "Close": "Close",
+  "History": "History",
+  "Changes": "Changes",
+  "Field": "Field",
+  "Old value": "Old value",
+  "New value": "New value",
+  "Created": "Created"
 }
