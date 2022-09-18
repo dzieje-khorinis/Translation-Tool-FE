@@ -4,6 +4,7 @@ export const reactPathProfile = "/profile"
 export const reactPathChangePassword = "/change_password"
 export const reactPathUsers = "/users"
 export const reactPathUserCreate = "/users/create"
+export const reactPathHistory = "/history"
 
 export const apiPathAuthToken = "/api/auth-token/"
 export const apiPathUsers = "/api/users/"

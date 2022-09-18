@@ -46,7 +46,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>)
 };
 
-function TranslationHistory({dataLanguage, translationId}) {
+function TranslationHistory({dataLanguage, tableRef, filters, translationId, showTranslationKey}) {
     const {t} = useTranslation('common')
 
     const statuses = STATUSES()
@@ -65,11 +65,21 @@ function TranslationHistory({dataLanguage, translationId}) {
         return fieldName
     }
 
+    let extraColumns = []
+    if (showTranslationKey) {
+        extraColumns.push({
+            title: t('Key'),
+            field: 'key',
+            render: rowData => thickPartOfText(rowData?.key, filters?.key || ""),
+        })
+    }
+
     return (
        
        <MaterialTable
             icons={tableIcons}
             title={t("History")}
+            tableRef={tableRef}
             components={{
                 Toolbar: props => (<></>),
             }}
@@ -90,6 +100,8 @@ function TranslationHistory({dataLanguage, translationId}) {
             options={{
                 search: false,
                 filtering: false,
+                sorting: false,
+                draggable: false,
                 pageSize: 10,
                 emptyRowsWhenPaging: false,
                 pageSizeOptions: [10],
@@ -108,13 +120,16 @@ function TranslationHistory({dataLanguage, translationId}) {
                 {
                     title: t('User'),
                     field: `user`,
-                    render: rowData => rowData?.user?.username,
+                    render: rowData => thickPartOfText(rowData?.user?.username, filters?.username || ""),
                 },
+                ...extraColumns,
                 {
                     title: t('Changes'),
                     field: `diff`,
                     render: rowData => {
-                        const rows = rowData.diff.map((v, i) => {
+                        const rows = rowData.diff.sort((a, b) => {
+                            return a.field > b.field
+                        }).map((v, i) => {
                             return <tr key={i}>
                                 <td>{formatFieldName(v.field)}</td>
                                 {
@@ -145,7 +160,10 @@ function TranslationHistory({dataLanguage, translationId}) {
                                     {rows}
                                 </table>
                                 :
-                                <p></p>//<{t('Created')}
+                                <p>
+                                    {rowData.type==='+' && t('Created')}
+                                    {rowData.type==='~' && t('Unknown changes')}
+                                </p>
                             }
                             </>
                         )
@@ -153,14 +171,17 @@ function TranslationHistory({dataLanguage, translationId}) {
                     
                 }
             ]}
-            data={query =>
+            data={query => 
                 new Promise((resolve, reject) => {
                     let requestData = {
                         per_page: query.pageSize,
                         page: query.page + 1,
                         order_by: query.orderBy?.field || "",
                         order_direction: query.orderDirection || "asc",
-                        translation_id: translationId,
+                        ...filters,
+                    }
+                    if (translationId) {
+                        requestData.translation_id = translationId
                     }
                     apiClient.get(apiPathTranslationHistory, requestData).then(({status, data}) => {
                         resolve({

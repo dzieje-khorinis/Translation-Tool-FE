@@ -6,6 +6,7 @@ import {
     reactPathIndex,
     apiPathUserDetails,
     reactPathProfile,
+    reactPathHistory,
     reactPathChangePassword, reactPathUsers, reactPathUserCreate
 } from "../../common/routes"
 import AuthRoute from "../AuthRoute";
@@ -25,6 +26,7 @@ import TranslationsTable from "../TranslationsTable";
 import TranslationEdit from "../TranslationEdit";
 import ScrollToTop from '../ScrollToTop';
 import LogoutConfirmation from '../LogoutConfirmation';
+import GlobalTranslationHistory from '../GlobalTranslationHistory';
 
 
 class App extends Component {
@@ -65,6 +67,7 @@ class App extends Component {
             apiClient.setAuthorizationHeader(token)
         }
         this.tableRef = createRef()
+        this.historyTableRef = createRef()
         i18n.changeLanguage(lang)
     }
 
@@ -226,6 +229,10 @@ class App extends Component {
                                     />
                                 }
                             </section>
+                        </AuthRoute>
+
+                        <AuthRoute exact path={reactPathHistory} loggedIn={this.state.loggedIn} type="private">
+                            <GlobalTranslationHistory tableRef={this.historyTableRef}/>
                         </AuthRoute>
 
                         <AuthRoute exact path={reactPathProfile} loggedIn={this.state.loggedIn} type="private">

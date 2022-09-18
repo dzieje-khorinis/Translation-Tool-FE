@@ -59,6 +59,11 @@
   "FILE TREE": "DRZEWO PLIKÓW",
   "Click tick to select, click arrow to open/close": "Kliknij ptaszek by wybrać, kliknij strzałkę by otworzyć/zamknąć",
   "To select catalog use CTRL+CLICK": "Aby wybrać katalog użyj CTRL+KLIK",
+  "DATE FROM": "DATA OD",
+  "DATE TO": "DATA DO",
+  "LANGUAGE": "JĘZYK",
+  "USERNAME": "NAZWA UŻYTKOWNIKA",
+  "KEY": "KLUCZ",
 
   "Translations": "Tłumaczenia",
   "Edit": "Edytuj",
@@ -89,5 +94,7 @@
   "Field": "Pole",
   "Old value": "Stara wartość",
   "New value": "Nowa wartość",
-  "Created": "Utworzono"
+  "Created": "Utworzono",
+  "Unknown changes": "Nieznane zmiany",
+  "Date": "Data"
 }

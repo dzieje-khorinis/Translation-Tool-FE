@@ -1,0 +1,56 @@
+.translation-history-wrapper {
+    padding: 20px;
+    background: var(--bgcolor4);
+    box-sizing: border-box;
+    width: 100%;
+    min-height: calc(100vh - 61px);
+    padding-bottom: 100px;
+
+    .translation-history-filters {
+        background: var(--bgcolor1);
+        margin-bottom: 20px;
+        padding: 20px;
+        display: flex;
+
+        .input_wrapper {
+            padding: 10px;
+            -ms-flex-preferred-size: 0;
+            flex-basis: 0;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            max-width: 100%;
+            
+            input {
+                margin-bottom: 5px;
+            }
+            
+            label {
+                display: block;
+                color: var(--color1);
+                font-weight: bold;
+                margin-bottom: 2px;
+            }
+        }
+
+        .react-datepicker__close-icon::after {
+            cursor: pointer;
+            background-color: #216ba5;
+            color: #fff;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            font-size: 17px;
+            display: block;
+            content: "×";
+        }
+
+        .react-datepicker__close-icon {
+            padding-bottom: 4px;
+        }
+    }
+}
+
+div.translation-history-filters .react-datepicker-popper {
+    z-index: 15;
+}

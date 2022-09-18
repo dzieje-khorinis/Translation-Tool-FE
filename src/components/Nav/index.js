@@ -1,6 +1,6 @@
 import './style.scss';
 import {Link} from "react-router-dom";
-import {reactPathIndex, reactPathProfile, reactPathUsers} from "../../common/routes";
+import {reactPathIndex, reactPathProfile, reactPathUsers, reactPathHistory} from "../../common/routes";
 import {useTranslation} from "react-i18next";
 import PropTypes from "prop-types";
 import {ROLE_COORDINATOR} from "../../common/constants";
@@ -10,6 +10,7 @@ import usersIcon from "../../static/images/users.svg"
 import profileIcon from "../../static/images/profile.svg"
 import houseIcon from "../../static/images/house.svg"
 import dayNightIcon from "../../static/images/daynight.svg"
+import historyIcon from "../../static/images/history.svg"
 
 
 function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick, changeTheme}) {
@@ -25,6 +26,7 @@ function Nav({user, loggedIn, interfaceLang, languageChange, logoutClick, change
             {
                 loggedIn &&
                 <>
+                    <li><Link to={reactPathHistory} className="link"><img title={t('History')} src={historyIcon}/></Link></li>
                     {
                         user.role >= ROLE_COORDINATOR &&
                         <li><Link to={reactPathUsers} className="link"><img title={t('Users')} src={usersIcon}/></Link></li>

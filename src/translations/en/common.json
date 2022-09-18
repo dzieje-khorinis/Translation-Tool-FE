@@ -59,6 +59,11 @@
   "FILE TREE": "FILE TREE",
   "Click tick to select, click arrow to open/close": "Click tick to select, click arrow to open/close",
   "To select catalog use CTRL+CLICK": "To select catalog use CTRL+CLICK",
+  "DATE FROM": "DATE FROM",
+  "DATE TO": "DATE TO",
+  "LANGUAGE": "LANGUAGE",
+  "USERNAME": "USERNAME",
+  "KEY": "KEY",
 
   "Translations": "Translations",
   "Edit": "Edit",
@@ -89,5 +94,7 @@
   "Field": "Field",
   "Old value": "Old value",
   "New value": "New value",
-  "Created": "Created"
+  "Created": "Created",
+  "Unknown changes": "Unknown changes",
+  "Date": "Date"
 }
