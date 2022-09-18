@@ -18,6 +18,8 @@ export const LANGUAGES = () => new Map([
     ['pl', i18n.t('common:Polish')],
     ['de', i18n.t('common:German')],
     ['ru', i18n.t('common:Russian')],
+    ['cs', i18n.t('common:Czech')],
+    ['it', i18n.t('common:Italian')],
 ])
 
 export const STATUSES = () => new Map([

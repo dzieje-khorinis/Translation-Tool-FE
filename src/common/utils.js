@@ -4,6 +4,8 @@ import en from "../static/images/flags/us.png";
 import pl from "../static/images/flags/pl.png";
 import de from "../static/images/flags/de.png";
 import ru from "../static/images/flags/ru.png";
+import cs from "../static/images/flags/cz.png";
+import it from "../static/images/flags/it.png";
 
 
 export const convertedRole = (textRole) => {
@@ -29,6 +31,10 @@ export function langCodeToLangName(langCode) {
             return i18n.t('common:German')
         case 'ru':
             return i18n.t('common:Russian')
+        case 'cs':
+            return i18n.t('common:Czech')
+        case 'it':
+            return i18n.t('common:Italian')
         default:
             return
     }
@@ -100,4 +106,6 @@ export const langCodeToIcon = {
     pl: pl,
     de: de,
     ru: ru,
+    cs: cs,
+    it: it,
 }
