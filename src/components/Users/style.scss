@@ -1,3 +1,28 @@
+.users-wrapper {
+  padding: 20px;
+  background: var(--bgcolor4);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(100vh - 61px);
+  padding-bottom: 100px;
+
+  .users-actions {
+      background: var(--bgcolor1);
+      margin-bottom: 20px;
+      padding: 20px;
+      display: flex;
+
+  }
+}
+
+
+
+
+
+
+
+
+
 td:last-of-type {
   text-align: center;
 }
@@ -61,6 +86,8 @@ span.button {
     display: inline-block;
     color: var(--color4);
     text-decoration: none;
+    box-sizing: border-box;
+    height: 50px;
 
     &:hover {
       color: var(--color1);
@@ -70,29 +97,120 @@ span.button {
   }
 }
 
-span.deactivate {
+p.activation {
+  margin: 0 20px;
+  height: 34px;
+  box-sizing: border-box;
+}
+
+span.activation {
+  
+  cursor: pointer;
   padding: 5px;
-  color: var(--color1);
   display: inline-block;
-  background: red;
   border-radius: 5px;
   opacity: 0.8;
   &:hover {
     opacity: 1;
     border: var(--border1);
-
   }
 }
 
-span.activate {
-  padding: 5px;
+span.deactivate {
   color: var(--color1);
-  display: inline-block;
+  background: red;
+}
+
+span.activate {
+
+  color: var(--color1);
   background: green;
-  border-radius: 5px;
-  opacity: 0.8;
+  
+}
+
+.languageBag {
+  font-weight: bold;
+  vertical-align: top;
+  font-size: 12px;
+  border: 1px solid yellow;
+  border-radius: 6px;
+  padding: 0px 2px;
+  margin-left: 2px;
+}
+
+span.inactive {
+  text-decoration: line-through;
+}
+
+span.link {
+  cursor: pointer;
+  color: var(--color5);
+
   &:hover {
-    opacity: 1;
-    border: var(--border1);
+    color: var(--color1);
   }
+}
+
+
+
+
+section.history-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .history-wrapper {
+    overflow: auto;
+    background: var(--bgcolor4);
+    border: var(--border1);
+    width: 70%;
+    height: 70%;
+    padding: 30px;
+    align-items: center;
+    position: relative;
+
+    span.link {
+      display: flex;
+      align-items: center;
+      color: var(--color4);
+      text-decoration: none;
+    }
+    
+    >div {
+      margin-top: 20px;
+    }
+  }
+
+}
+
+
+.close_modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+
+
+
+span.link img {
+  width: 30px;
+  filter: invert(63%) sepia(12%) saturate(0%) hue-rotate(207deg) brightness(95%) contrast(86%);
+}
+
+span.link img:hover {
+  filter: var(--black-to-white-filter);
+}
+
+p.username {
+  font-weight: bold;
+  color: var(--color1);
 }

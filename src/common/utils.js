@@ -56,15 +56,16 @@ export function roleIdToText(roleId, roleLang) {
 export function roleCodeToText(roleId, roleLang) {
     switch (roleId) {
         case 'TRANSLATOR':
-            return i18n.t('common:Translator') + ` [${roleLang}]`;
+            return i18n.t('common:Translator') + (roleLang ? ` [${roleLang}]` : '');
         case 'COORDINATOR':
-            return i18n.t('common:Coordinator') + ` [${roleLang}]`;
+            return i18n.t('common:Coordinator') + (roleLang ? ` [${roleLang}]` : '');
         case 'ADMIN':
             return i18n.t('common:Admin');
         default:
             return i18n.t('common:Guest');
     }
 }
+
 
 export function thickPartOfText(text, part) {
     if (part.length === 0) {

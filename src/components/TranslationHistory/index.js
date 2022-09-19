@@ -46,7 +46,7 @@ const tableIcons = {
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>)
 };
 
-function TranslationHistory({dataLanguage, tableRef, filters, translationId, showTranslationKey}) {
+function TranslationHistory({dataLanguage, tableRef, filters, translationId, userId, showTranslationKey}) {
     const {t} = useTranslation('common')
 
     const statuses = STATUSES()
@@ -66,6 +66,13 @@ function TranslationHistory({dataLanguage, tableRef, filters, translationId, sho
     }
 
     let extraColumns = []
+    if (!userId) {
+        extraColumns.push({
+            title: t('User'),
+            field: `user`,
+            render: rowData => thickPartOfText(rowData?.user?.username, filters?.username || ""),
+        })
+    }
     if (showTranslationKey) {
         extraColumns.push({
             title: t('Key'),
@@ -74,8 +81,7 @@ function TranslationHistory({dataLanguage, tableRef, filters, translationId, sho
         })
     }
 
-    return (
-       
+    return (       
        <MaterialTable
             icons={tableIcons}
             title={t("History")}
@@ -116,11 +122,6 @@ function TranslationHistory({dataLanguage, tableRef, filters, translationId, sho
                             <p><Moment format="HH:mm:ss">{rowData.date}</Moment></p>
                         </div>
                     )
-                },
-                {
-                    title: t('User'),
-                    field: `user`,
-                    render: rowData => thickPartOfText(rowData?.user?.username, filters?.username || ""),
                 },
                 ...extraColumns,
                 {
@@ -182,6 +183,9 @@ function TranslationHistory({dataLanguage, tableRef, filters, translationId, sho
                     }
                     if (translationId) {
                         requestData.translation_id = translationId
+                    }
+                    if (userId) {
+                        requestData.user_id = userId
                     }
                     apiClient.get(apiPathTranslationHistory, requestData).then(({status, data}) => {
                         resolve({
