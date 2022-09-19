@@ -76,7 +76,7 @@ class App extends Component {
     }
 
     setPageState = (page) => {
-        page = page || this.state.table.page
+        // page = page || this.state.table.page
         this.setState({table: {...this.state.table, page: page}})
     }
 
