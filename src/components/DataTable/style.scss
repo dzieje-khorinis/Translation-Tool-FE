@@ -1,0 +1,62 @@
+tr.MuiTableRow-root {
+  background-color: var(--bgcolor2);
+  border: 0;
+  color: var(--color1);
+
+  &:nth-child(2n+1) {
+    background-color: var(--bgcolor3);
+  }
+
+  &.MuiTableRow-footer {
+    background-color: var(--bgcolor1);
+  }
+
+  > td.MuiTableCell-root {
+    color: var(--color1);
+    border: 0;
+  }
+
+  > th.MuiTableCell-root {
+    color: var(--color1);
+    background-color: var(--bgcolor1);
+
+    &.MuiTableCell-head:last-child {
+      text-align: center;
+      padding-left: 36px;
+    }
+  }
+}
+
+span.MuiButtonBase-root {
+  color: var(--color1);
+  &:not(.Mui-disabled) {
+    &:hover {
+      color: var(--color1);
+      font-weight: bold;
+    }
+
+    &.MuiTableSortLabel-active {
+      color: var(--color1);
+      font-weight: bold;
+    }
+  }
+}
+
+button.MuiButtonBase-root {
+  &.Mui-disabled {
+    svg.MuiSvgIcon-root {
+      color: #666;
+    }
+  }
+
+  svg.MuiSvgIcon-root {
+    color: var(--color1);
+  }
+}
+span.MuiTypography-root {
+  color: var(--color1);
+}
+
+.MuiTableSortLabel-root.MuiTableSortLabel-active.MuiTableSortLabel-root.MuiTableSortLabel-active .MuiTableSortLabel-icon > path {
+  color: var(--color1);
+}
