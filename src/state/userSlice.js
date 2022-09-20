@@ -10,9 +10,11 @@ export const userSlice = createSlice({
   },
   reducers: {
     login: (state) => {
+      /* eslint-disable-next-line no-param-reassign */
       state.loggedIn = true;
     },
     logout: (state) => {
+      /* eslint-disable-next-line no-param-reassign */
       state.loggedIn = false;
     },
   },

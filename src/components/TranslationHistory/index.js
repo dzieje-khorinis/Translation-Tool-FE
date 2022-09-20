@@ -2,6 +2,7 @@ import './style.scss';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import Moment from 'react-moment';
+import PropTypes from 'prop-types';
 import { apiPathTranslationHistory } from '../../common/routes';
 
 import { thickPartOfText } from '../../common/utils';
@@ -9,7 +10,6 @@ import { STATUSES } from '../../common/constants';
 import DataTable from '../DataTable';
 
 function TranslationHistory({
-  dataLanguage,
   tableRef,
   filters,
   translationId,
@@ -88,8 +88,8 @@ function TranslationHistory({
           render: (rowData) => {
             const rows = rowData.diff
               .sort((a, b) => a.field > b.field)
-              .map((v, i) => (
-                <tr key={i}>
+              .map((v) => (
+                <tr>
                   <td>{formatFieldName(v.field)}</td>
                   {v.field.startsWith('state_') ? (
                     <>
@@ -138,5 +138,28 @@ function TranslationHistory({
   );
 }
 
-TranslationHistory.propTypes = {};
+TranslationHistory.defaultProps = {
+  tableRef: null,
+  filters: {},
+  translationId: undefined,
+  userId: undefined,
+  showTranslationKey: false,
+};
+TranslationHistory.propTypes = {
+  tableRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+
+  filters: PropTypes.shape({
+    language: PropTypes.string.isRequired,
+    startDate: PropTypes.number.isRequired,
+    endDate: PropTypes.number.isRequired,
+    username: PropTypes.string,
+    key: PropTypes.string,
+  }),
+  translationId: PropTypes.number,
+  userId: PropTypes.number,
+  showTranslationKey: PropTypes.bool,
+};
 export default TranslationHistory;

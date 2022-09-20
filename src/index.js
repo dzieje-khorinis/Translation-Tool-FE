@@ -7,18 +7,18 @@ import i18next from 'i18next';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
-import common_en from './translations/en/common.json';
-import common_pl from './translations/pl/common.json';
+import commonEn from './translations/en/common.json';
+import commonPl from './translations/pl/common.json';
 
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
   lng: 'en', // language to use
   resources: {
     en: {
-      common: common_en, // 'common' is our custom namespace
+      common: commonEn, // 'common' is our custom namespace
     },
     pl: {
-      common: common_pl,
+      common: commonPl,
     },
   },
 });

@@ -33,7 +33,7 @@ function Nav({
         <div>
           {loggedIn && (
             <>
-              <img title={t('Homepage')} src={houseIcon} />
+              <img title={t('Homepage')} src={houseIcon} alt="" />
               <span>{t('Homepage')}</span>
             </>
           )}
@@ -45,29 +45,29 @@ function Nav({
           <>
             <li>
               <Link to={reactPathHistory} className="link">
-                <img title={t('History')} src={historyIcon} />
+                <img title={t('History')} src={historyIcon} alt="" />
               </Link>
             </li>
             {user.role >= ROLE_COORDINATOR && (
               <li>
                 <Link to={reactPathUsers} className="link">
-                  <img title={t('Users')} src={usersIcon} />
+                  <img title={t('Users')} src={usersIcon} alt="" />
                 </Link>
               </li>
             )}
             <li>
               <Link to={reactPathProfile} className="link">
-                <img title={t('Profile')} src={profileIcon} />
+                <img title={t('Profile')} src={profileIcon} alt="" />
               </Link>
             </li>
             <li>
               <span onClick={changeTheme} className="link">
-                <img title={t('Change theme')} src={dayNightIcon} />
+                <img title={t('Change theme')} src={dayNightIcon} alt="" />
               </span>
             </li>
             <li>
               <span onClick={logoutClick} className="link">
-                <img title={t('Logout')} src={logoutIcon} />
+                <img title={t('Logout')} src={logoutIcon} alt="" />
               </span>
             </li>
           </>
@@ -84,16 +84,17 @@ function Nav({
 }
 
 Nav.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
   languageChange: PropTypes.func.isRequired,
   logoutClick: PropTypes.func.isRequired,
   changeTheme: PropTypes.func.isRequired,
-  interfaceLang: PropTypes.string,
+  interfaceLang: PropTypes.string.isRequired,
   user: PropTypes.exact({
     name: PropTypes.string,
     email: PropTypes.string,
     role: PropTypes.number,
     roleLang: PropTypes.string,
-  }),
+  }).isRequired,
 };
 
 export default Nav;

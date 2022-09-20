@@ -8,14 +8,6 @@ function FileTreeNode({ data, getChildrenUrl, depth, filters, setFilters }) {
   const [opening, setOpening] = useState(false);
   const [children, setChildren] = useState([]);
 
-  function handleClick(e) {
-    if (e.ctrlKey || data.leaf) {
-      select();
-    } else {
-      open();
-    }
-  }
-
   function select() {
     if (filters.path === data.path) {
       setFilters({ path: '' });
@@ -37,11 +29,20 @@ function FileTreeNode({ data, getChildrenUrl, depth, filters, setFilters }) {
 
     setOpening(true);
     const childrenUrl = getChildrenUrl(data.id);
-    apiClient.get(childrenUrl).then(({ status, data }) => {
+    /* eslint-disable-next-line no-shadow */
+    apiClient.get(childrenUrl).then(({ data }) => {
       setChildren(data);
       setOpening(false);
       setOpened(true);
     });
+  }
+
+  function handleClick(e) {
+    if (e.ctrlKey || data.leaf) {
+      select();
+    } else {
+      open();
+    }
   }
 
   let nodeArrowClass = 'nodeArrow';
@@ -76,9 +77,8 @@ function FileTreeNode({ data, getChildrenUrl, depth, filters, setFilters }) {
         </span>
       </p>
       {opened &&
-        children.map((item, i) => (
+        children.map((item) => (
           <FileTreeNode
-            key={i}
             data={item}
             getChildrenUrl={getChildrenUrl}
             depth={depth + 1}
@@ -91,9 +91,16 @@ function FileTreeNode({ data, getChildrenUrl, depth, filters, setFilters }) {
 }
 
 FileTreeNode.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    path: PropTypes.string,
+    name: PropTypes.string,
+    id: PropTypes.number,
+    leaf: PropTypes.bool,
+  }).isRequired,
   getChildrenUrl: PropTypes.func.isRequired,
-  filters: PropTypes.object.isRequired,
+  filters: PropTypes.shape({
+    path: PropTypes.string,
+  }).isRequired,
   setFilters: PropTypes.func.isRequired,
   depth: PropTypes.number.isRequired,
 };

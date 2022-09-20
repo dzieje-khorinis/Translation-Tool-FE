@@ -2,6 +2,7 @@ import './style.scss';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import Select, { components } from 'react-select';
+import PropTypes from 'prop-types';
 import {
   LANGUAGES,
   ROLE_ADMIN,
@@ -10,10 +11,7 @@ import {
   STATUSES,
 } from '../../common/constants';
 import { apiClient } from '../../common/apiClient';
-import {
-  apiPathTranslationHistory,
-  apiPathTranslationSave,
-} from '../../common/routes';
+import { apiPathTranslationSave } from '../../common/routes';
 import { langCodeToIcon, langCodeToLangName } from '../../common/utils';
 import closeIcon from '../../static/images/x-solid.svg';
 import historyIcon from '../../static/images/history.svg';
@@ -33,7 +31,6 @@ function TranslationEdit({
 
   const [processing, setProcessing] = useState(false);
   const [historyViewOpen, setHistoryViewOpen] = useState(false);
-  const [historyData, setHistoryData] = useState([]);
 
   const [languageToRead, setLanguageToRead] = useState(dataLanguage);
   const [languageToWrite, setLanguageToWrite] = useState(dataLanguage);
@@ -62,10 +59,10 @@ function TranslationEdit({
   const languages = LANGUAGES();
 
   const statuses = STATUSES();
-  const statusItems = [...statuses.keys()].map((statusCode) => {
+  const statusItems = [...statuses.keys()].map((tmpStatusCode) => {
     return {
-      value: statusCode,
-      title: statuses.get(statusCode),
+      value: tmpStatusCode,
+      title: statuses.get(tmpStatusCode),
     };
   });
 
@@ -92,12 +89,7 @@ function TranslationEdit({
 
   const possibleActions = getPossibleActions();
 
-  const onTranslationSave = (e) => {
-    console.log('onTranslationSave');
-    console.log('newState', newState);
-    console.log('textToWrite', textToWrite);
-    console.log('languageToWrite', languageToWrite);
-
+  const onTranslationSave = () => {
     setProcessing(true);
     apiClient
       .post(apiPathTranslationSave, {
@@ -106,7 +98,7 @@ function TranslationEdit({
         text: textToWrite,
         language: languageToWrite,
       })
-      .then(({ status, data }) => {
+      .then(() => {
         setProcessing(false);
         closeEditModal();
         editCallback();
@@ -114,34 +106,34 @@ function TranslationEdit({
   };
 
   return (
-    <section className="translation-editor" onClick={(e) => closeEditModal()}>
+    <section className="translation-editor" onClick={() => closeEditModal()}>
       <div
         className={`translation-wrapper ${
           historyViewOpen ? 'history-view' : 'edit-view'
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <span onClick={(e) => closeEditModal()} className="link close_modal">
-          <img title={t('Close')} src={closeIcon} />
+        <span onClick={() => closeEditModal()} className="link close_modal">
+          <img title={t('Close')} src={closeIcon} alt="" />
         </span>
 
         {historyViewOpen ? (
           <>
             <span
-              onClick={(e) => setHistoryViewOpen(false)}
+              onClick={() => setHistoryViewOpen(false)}
               className="link back_to_edit_view"
             >
-              <img title={t('Back')} src={editIcon} />
+              <img title={t('Back')} src={editIcon} alt="" />
             </span>
             <TranslationHistory translationId={translationData.id} />
           </>
         ) : (
           <>
             <span
-              onClick={(e) => setHistoryViewOpen(true)}
+              onClick={() => setHistoryViewOpen(true)}
               className="link history_view"
             >
-              <img title={t('History')} src={historyIcon} />
+              <img title={t('History')} src={historyIcon} alt="" />
             </span>
 
             <h3 className="translation-header">
@@ -155,11 +147,12 @@ function TranslationEdit({
             </p>
             <br />
             <fieldset>
-              <label className="translation-header">
+              <label htmlFor="language_to_read" className="translation-header">
                 {t('Show translation')}:
               </label>
               <div className="langSelectWrapper">
                 <Select
+                  inputId="language_to_read"
                   value={{
                     value: languageToRead.value,
                     label: `${languages.get(
@@ -171,9 +164,7 @@ function TranslationEdit({
                   isClearable={false}
                   isRtl={false}
                   isSearchable={false}
-                  onChange={(option, { action }) =>
-                    setLanguageToRead(option.value)
-                  }
+                  onChange={(option) => setLanguageToRead(option.value)}
                   options={Array.from(languages).map(([key, value]) => {
                     return {
                       value: key,
@@ -182,6 +173,7 @@ function TranslationEdit({
                     };
                   })}
                   components={{
+                    /* eslint-disable */
                     Option: (props) => (
                       <Option {...props}>
                         <img src={props.data.icon} alt={props.data.label} />
@@ -190,6 +182,7 @@ function TranslationEdit({
                         </span>
                       </Option>
                     ),
+                    /* eslint-enable */
                   }}
                 />
               </div>
@@ -205,7 +198,7 @@ function TranslationEdit({
             </div>
 
             <fieldset>
-              <label className="translation-header">
+              <label htmlFor="language_to_write" className="translation-header">
                 {t('Enter translation')}
                 {user.role < ROLE_ADMIN &&
                   ` (${langCodeToLangName(languageToWrite)})`}
@@ -215,6 +208,7 @@ function TranslationEdit({
               {user.role >= ROLE_ADMIN && (
                 <div className="langSelectWrapper">
                   <Select
+                    inputId="language_to_write"
                     value={{
                       value: languageToWrite.value,
                       label: `${languages.get(
@@ -226,9 +220,7 @@ function TranslationEdit({
                     isClearable={false}
                     isRtl={false}
                     isSearchable={false}
-                    onChange={(option, { action }) =>
-                      setLanguageToWrite(option.value)
-                    }
+                    onChange={(option) => setLanguageToWrite(option.value)}
                     options={Array.from(languages).map(([key, value]) => {
                       return {
                         value: key,
@@ -237,6 +229,7 @@ function TranslationEdit({
                       };
                     })}
                     components={{
+                      /* eslint-disable */
                       Option: (props) => (
                         <Option {...props}>
                           <img src={props.data.icon} alt={props.data.label} />
@@ -245,6 +238,7 @@ function TranslationEdit({
                           </span>
                         </Option>
                       ),
+                      /* eslint-enable */
                     }}
                   />
                 </div>
@@ -261,14 +255,12 @@ function TranslationEdit({
             </div>
 
             {possibleActions.length > 0 && (
-              <label className="translation-header">
-                {t('Translation state')}:
-              </label>
+              <p className="translation-header">{t('Translation state')}:</p>
             )}
 
             <fieldset>
               {statusItems.map(
-                (item, i) =>
+                (item) =>
                   possibleActions.includes(item.value) && (
                     <div
                       style={{ display: 'inline' }}
@@ -314,5 +306,20 @@ function TranslationEdit({
   );
 }
 
-TranslationEdit.propTypes = {};
+TranslationEdit.defaultProps = {};
+TranslationEdit.propTypes = {
+  user: PropTypes.shape({
+    role: PropTypes.string,
+    roleLang: PropTypes.string,
+  }).isRequired,
+  translationData: PropTypes.shape({
+    id: PropTypes.number,
+    key: PropTypes.string,
+    file: PropTypes.string,
+    line: PropTypes.number,
+  }).isRequired,
+  dataLanguage: PropTypes.string.isRequired,
+  closeEditModal: PropTypes.func.isRequired,
+  editCallback: PropTypes.func.isRequired,
+};
 export default TranslationEdit;

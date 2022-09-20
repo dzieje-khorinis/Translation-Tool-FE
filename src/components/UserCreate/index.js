@@ -1,5 +1,6 @@
 import './style.scss';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import { apiPathUserCreate, reactPathUsers } from '../../common/routes';
 import { LANGUAGES, ROLE_ADMIN } from '../../common/constants';
 import { langCodeToLangName } from '../../common/utils';
@@ -85,5 +86,10 @@ function UserCreate({ user }) {
   );
 }
 
-UserCreate.propTypes = {};
+UserCreate.propTypes = {
+  user: PropTypes.exact({
+    role: PropTypes.string.isRequired,
+    roleLang: PropTypes.string.isRequired,
+  }).isRequired,
+};
 export default UserCreate;

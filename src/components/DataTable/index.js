@@ -18,8 +18,10 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import PropTypes from 'prop-types';
 import { apiClient } from '../../common/apiClient';
 
+/* eslint-disable react/jsx-props-no-spreading */
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -43,6 +45,7 @@ const tableIcons = {
   ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
+/* eslint-enable react/jsx-props-no-spreading */
 
 function DataTable({
   tableRef,
@@ -62,7 +65,7 @@ function DataTable({
       icons={tableIcons}
       title={title}
       components={{
-        Toolbar: (props) => <></>,
+        Toolbar: () => null,
       }}
       localization={{
         header: {
@@ -90,8 +93,7 @@ function DataTable({
       columns={columns}
       actions={actions}
       data={(query) =>
-        new Promise((resolve, reject) => {
-          console.log('query', query, 'filters', filters);
+        new Promise((resolve) => {
           const requestData = {
             per_page: query.pageSize,
             page: query.page + 1,
@@ -99,7 +101,7 @@ function DataTable({
             order_direction: query.orderDirection || 'asc',
             ...filters,
           };
-          apiClient.get(dataUrl, requestData).then(({ status, data }) => {
+          apiClient.get(dataUrl, requestData).then(({ data }) => {
             if (dataReceiveCallback) {
               dataReceiveCallback(data);
             }
@@ -115,4 +117,37 @@ function DataTable({
   );
 }
 
+DataTable.defaultProps = {
+  dataReceiveCallback: () => {},
+  filters: {},
+  options: {},
+  columns: [],
+  actions: [],
+};
+
+DataTable.propTypes = {
+  filters: PropTypes.shape({
+    searchTerm: PropTypes.string,
+  }),
+  options: PropTypes.arrayOf({
+    search: PropTypes.bool,
+  }),
+  columns: PropTypes.arrayOf({
+    title: PropTypes.string,
+    field: PropTypes.string,
+    render: PropTypes.func,
+  }),
+  actions: PropTypes.arrayOf({
+    icon: PropTypes.string,
+    tooltip: PropTypes.string,
+    onClick: PropTypes.func,
+  }),
+  tableRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]).isRequired,
+  title: PropTypes.string.isRequired,
+  dataReceiveCallback: PropTypes.func,
+  dataUrl: PropTypes.string.isRequired,
+};
 export default DataTable;

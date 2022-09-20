@@ -11,7 +11,7 @@ function FileTree({ rootUrl, getChildrenUrl, filters, setFilters }) {
   const { t } = useTranslation('common');
 
   useEffect(() => {
-    apiClient.get(rootUrl).then(({ status, data }) => {
+    apiClient.get(rootUrl).then(({ data }) => {
       setRootData(data);
     });
   }, [rootUrl]);
@@ -35,7 +35,7 @@ function FileTree({ rootUrl, getChildrenUrl, filters, setFilters }) {
 FileTree.propTypes = {
   rootUrl: PropTypes.string.isRequired,
   getChildrenUrl: PropTypes.func.isRequired,
-  filters: PropTypes.object.isRequired,
+  filters: PropTypes.shape({}).isRequired,
   setFilters: PropTypes.func.isRequired,
 };
 export default FileTree;

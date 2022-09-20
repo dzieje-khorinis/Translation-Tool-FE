@@ -2,6 +2,7 @@ import './style.scss';
 import { useTranslation } from 'react-i18next';
 import React from 'react';
 import Edit from '@material-ui/icons/Edit';
+import PropTypes from 'prop-types';
 import { apiPathTranslations } from '../../common/routes';
 import { thickPartOfText } from '../../common/utils';
 import DataTable from '../DataTable';
@@ -10,10 +11,7 @@ function TranslationsTable({
   filters,
   tableRef,
   setAggregations,
-  setTranslationsData,
   openEditModal,
-  refreshTable,
-  setRefreshTable,
   setPageState,
 }) {
   const { t } = useTranslation('common');
@@ -85,7 +83,6 @@ function TranslationsTable({
           filters={filters}
           dataReceiveCallback={(data) => {
             setAggregations(data.aggregations);
-            setTranslationsData(data.data);
             setPageState(data.page - 1);
           }}
         />
@@ -94,4 +91,17 @@ function TranslationsTable({
   );
 }
 
+TranslationsTable.propTypes = {
+  filters: PropTypes.exact({
+    dataLanguage: PropTypes.string.isRequired,
+    searchTerm: PropTypes.string.isRequired,
+  }).isRequired,
+  tableRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]).isRequired,
+  setAggregations: PropTypes.func.isRequired,
+  openEditModal: PropTypes.func.isRequired,
+  setPageState: PropTypes.func.isRequired,
+};
 export default TranslationsTable;

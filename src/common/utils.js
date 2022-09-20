@@ -40,6 +40,7 @@ export function langCodeToLangName(langCode) {
     case 'it':
       return i18n.t('common:Italian');
     default:
+      return i18n.t('common:None');
   }
 }
 
@@ -98,7 +99,7 @@ export function getCookie(cname) {
   const name = `${cname}=`;
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(';');
-  for (let i = 0; i < ca.length; i++) {
+  for (let i = 0; i < ca.length; i += 1) {
     let c = ca[i];
     while (c.charAt(0) === ' ') {
       c = c.substring(1);

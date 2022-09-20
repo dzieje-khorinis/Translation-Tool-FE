@@ -28,13 +28,11 @@ function ScrollToTop() {
   window.addEventListener('scroll', toggleVisible);
 
   return (
-    <>
-      {visible && (
-        <span className="link scroll_to_top" onClick={scrollToTop}>
-          <img title={t('Scroll to top')} src={circleArrowUpSolidIcon} />
-        </span>
-      )}
-    </>
+    visible && (
+      <span className="link scroll_to_top" onClick={scrollToTop}>
+        <img title={t('Scroll to top')} src={circleArrowUpSolidIcon} alt="" />
+      </span>
+    )
   );
 }
 

@@ -21,7 +21,7 @@ function AutoInput({ name, language, url, value, setValue, optionName }) {
     setDisplay(false);
 
     if (searchTerm.length === 0 || autoChanged) {
-      return;
+      return () => {};
     }
 
     const delayDebounceFn = setTimeout(() => {
@@ -106,7 +106,7 @@ function AutoInput({ name, language, url, value, setValue, optionName }) {
         <div className="auto_container">
           {options.slice(0, 10).map((v, i) => {
             return (
-              <div className="option" key={i} onClick={() => selectOption(i)}>
+              <div className="option" onClick={() => selectOption(i)}>
                 <span>{thickPartOfText(v[optionName], searchTerm)}</span>
               </div>
             );

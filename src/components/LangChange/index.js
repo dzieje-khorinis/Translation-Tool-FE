@@ -35,20 +35,21 @@ function LangChange({ languageChange, interfaceLang }) {
   return (
     <div
       className="langChange"
-      onMouseEnter={(e) => setHover(true)}
-      onMouseLeave={(e) => setHover(false)}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
-      <img src={currentLang.src} title={currentLang.title} />
+      <img src={currentLang.src} title={currentLang.title} alt="" />
       <span>{hover ? '▲' : '▼'}</span>
       {hover && (
         <div className="langList">
-          {otherLangs.map((langDetails, i) => {
+          {otherLangs.map((langDetails) => {
             return (
+              /* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */
               <img
-                key={i}
                 src={langDetails.src}
                 title={langDetails.title}
-                onClick={(e) => languageChangeHandler(langDetails.code)}
+                onClick={() => languageChangeHandler(langDetails.code)}
+                alt=""
               />
             );
           })}

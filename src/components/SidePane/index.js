@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import Select, { components } from 'react-select';
 import { Chart } from 'react-google-charts';
+import PropTypes from 'prop-types';
 import AutoInput from '../AutoInput';
 import {
   apiPathFilePathsSearch,
@@ -56,7 +57,7 @@ function SidePane({ user, filters, setFilters, aggregations, themeName }) {
             isClearable={false}
             isRtl={false}
             isSearchable={false}
-            onChange={(option, { action }) => {
+            onChange={(option) => {
               setFilters({ dataLanguage: option.value });
             }}
             options={Array.from(languages).map(([key, value]) => {
@@ -67,12 +68,14 @@ function SidePane({ user, filters, setFilters, aggregations, themeName }) {
               };
             })}
             components={{
+              /* eslint-disable */
               Option: (props) => (
                 <Option {...props}>
                   <img src={props.data.icon} alt={props.data.label} />
                   <span style={{ marginLeft: 10 }}>{props.data.label}</span>
                 </Option>
               ),
+              /* eslint-enable */
             }}
           />
         ) : (
@@ -112,8 +115,8 @@ function SidePane({ user, filters, setFilters, aggregations, themeName }) {
         <label htmlFor="id_group">{t('FILE TREE')}</label>
         <FileTree
           rootUrl={apiPathFileTreeRoot}
-          getChildrenUrl={(parent_id) =>
-            apiPathFileTreeNodes.replace('{parent_id}', parent_id)
+          getChildrenUrl={(parentId) =>
+            apiPathFileTreeNodes.replace('{parent_id}', parentId)
           }
           filters={filters}
           setFilters={setFilters}
@@ -131,7 +134,7 @@ function SidePane({ user, filters, setFilters, aggregations, themeName }) {
               label: statuses.get(element),
             };
           })}
-          onChange={(option, { action }) => {
+          onChange={(option) => {
             setFilters({ states: option.map((element) => element.value) });
           }}
           isMulti
@@ -141,8 +144,8 @@ function SidePane({ user, filters, setFilters, aggregations, themeName }) {
       <div className="input_wrapper">
         <table>
           <tbody>
-            {statusItems.map((item, i) => (
-              <tr key={i}>
+            {statusItems.map((item) => (
+              <tr>
                 <td>
                   <span data-status={item.value} className="statusCircle" />
                   <span className="statusTitle">{item.label}</span>
@@ -198,4 +201,23 @@ function SidePane({ user, filters, setFilters, aggregations, themeName }) {
   );
 }
 
+SidePane.defaultProps = {};
+SidePane.propTypes = {
+  user: PropTypes.shape({
+    role: PropTypes.string,
+    roleLang: PropTypes.string,
+  }).isRequired,
+  filters: PropTypes.shape({
+    dataLanguage: PropTypes.string,
+    searchTerm: PropTypes.string,
+    path: PropTypes.string,
+    states: PropTypes.string,
+  }).isRequired,
+  setFilters: PropTypes.func.isRequired,
+  themeName: PropTypes.string.isRequired,
+  aggregations: PropTypes.arrayOf({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }).isRequired,
+};
 export default SidePane;

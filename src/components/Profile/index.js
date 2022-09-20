@@ -1,6 +1,7 @@
 import './style.scss';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import { reactPathChangePassword } from '../../common/routes';
 import { roleIdToText } from '../../common/utils';
 
@@ -37,5 +38,12 @@ function Profile({ user }) {
   );
 }
 
-Profile.propTypes = {};
+Profile.propTypes = {
+  user: PropTypes.shape({
+    role: PropTypes.string,
+    roleLang: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
+};
 export default Profile;

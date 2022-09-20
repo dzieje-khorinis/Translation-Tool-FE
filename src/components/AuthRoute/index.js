@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { reactPathLogin } from '../../common/routes';
 
 function AuthRoute(props) {
@@ -13,7 +14,13 @@ function AuthRoute(props) {
   if (type === 'private' && !loggedIn) {
     return <Redirect to={reactPathLogin} />;
   }
+  /* eslint-disable-next-line react/jsx-props-no-spreading */
   return <Route {...props} />;
 }
 
+AuthRoute.propTypes = {
+  type: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+};
 export default AuthRoute;
