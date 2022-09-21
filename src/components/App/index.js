@@ -12,10 +12,11 @@ import {
   reactPathChangePassword,
   reactPathUsers,
   reactPathUserCreate,
+  apiPathIssueWebSocketTicket,
 } from '../../common/routes';
 import AuthRoute from '../AuthRoute';
 import Nav from '../Nav';
-import { apiClient } from '../../common/apiClient';
+import { apiClient, SUB_URL } from '../../common/apiClient';
 import {
   LANG_EN,
   ROLE_GUEST,
@@ -39,6 +40,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     const token = localStorage.getItem('token');
+    this.wsTicket = localStorage.getItem('wsTicket');
     const lang = localStorage.getItem('lang') || LANG_EN;
     this.state = {
       loggedIn: !!token,
@@ -81,8 +83,37 @@ class App extends Component {
 
     if (loggedIn) {
       this.setUserDetails();
+      this.issueWebSocketTicket();
     }
   }
+
+  issueWebSocketTicket = () => {
+    console.log('issueWebSocketTicket');
+    apiClient.post(apiPathIssueWebSocketTicket).then(({ data }) => {
+      localStorage.setItem('wsTicket', data.ticket);
+      this.wsTicket = data.ticket;
+      this.setupWebSocket();
+    });
+  };
+
+  setupWebSocket = () => {
+    console.log('setupWebSocket');
+    const ws = new WebSocket(`${SUB_URL}/sub?ticket=${this.wsTicket}`);
+    console.log('WebSocket Created');
+    ws.onopen = () => {
+      console.log('WebSocket Open');
+    };
+
+    ws.onmessage = (message) => {
+      const data = JSON.parse(message.data);
+      console.log('WebSocket Message', data);
+    };
+
+    ws.onclose = () => {
+      console.log('WebSocket Closed');
+      // setTimeout(this.setupWebSocket, 10000);
+    };
+  };
 
   setPageState = (page) => {
     const { table } = this.state;
@@ -126,6 +157,7 @@ class App extends Component {
       return state;
     });
     this.setUserDetails();
+    this.issueWebSocketTicket();
   };
 
   logout = () => {

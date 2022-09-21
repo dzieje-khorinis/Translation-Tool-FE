@@ -2,6 +2,8 @@ import { apiPathAuthToken } from './routes';
 import { LANG_EN } from './constants';
 
 export const API_BASE_URL = process.env.REACT_APP_API_URL;
+export const SUB_URL = process.env.REACT_APP_SUB_URL;
+export const PUB_URL = process.env.REACT_APP_PUB_URL;
 
 export class ApiClient {
   constructor() {

@@ -19,3 +19,4 @@ export const apiPathFileTreeNodes = '/api/directories/{parent_id}/children';
 export const apiPathTranslations = '/api/translations/';
 export const apiPathTranslationSave = '/api/translations/save/';
 export const apiPathTranslationHistory = '/api/translations_history/';
+export const apiPathIssueWebSocketTicket = '/api/issue-web-socket-ticket/';
