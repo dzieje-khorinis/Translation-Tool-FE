@@ -32,7 +32,20 @@ function TranslationEdit({
   const [processing, setProcessing] = useState(false);
   const [historyViewOpen, setHistoryViewOpen] = useState(false);
 
-  const [languageToRead, setLanguageToRead] = useState(dataLanguage);
+  const initialLanguageToReadCached = () => {
+    const language = localStorage.getItem('languageToRead');
+    return language || dataLanguage;
+  };
+
+  const [languageToRead, setLanguageToRead] = useState(
+    initialLanguageToReadCached()
+  );
+
+  const setLanguageToReadCached = (language) => {
+    localStorage.setItem('languageToRead', language);
+    setLanguageToRead(language);
+  };
+
   const [languageToWrite, setLanguageToWrite] = useState(dataLanguage);
 
   const [textToRead, setTextToRead] = useState(
@@ -164,7 +177,7 @@ function TranslationEdit({
                   isClearable={false}
                   isRtl={false}
                   isSearchable={false}
-                  onChange={(option) => setLanguageToRead(option.value)}
+                  onChange={(option) => setLanguageToReadCached(option.value)}
                   options={Array.from(languages).map(([key, value]) => {
                     return {
                       value: key,
