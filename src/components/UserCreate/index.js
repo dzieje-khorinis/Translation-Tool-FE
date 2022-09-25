@@ -88,7 +88,9 @@ function UserCreate({ user }) {
 
 UserCreate.propTypes = {
   user: PropTypes.exact({
-    role: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    role: PropTypes.number.isRequired,
     roleLang: PropTypes.string.isRequired,
   }).isRequired,
 };

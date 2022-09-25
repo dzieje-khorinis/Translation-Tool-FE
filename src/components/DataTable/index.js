@@ -58,7 +58,6 @@ function DataTable({
   dataReceiveCallback,
 }) {
   const { t } = useTranslation('common');
-
   return (
     <MaterialTable
       tableRef={tableRef}
@@ -123,29 +122,34 @@ DataTable.defaultProps = {
   options: {},
   columns: [],
   actions: [],
+  tableRef: null,
 };
 
 DataTable.propTypes = {
   filters: PropTypes.shape({
     searchTerm: PropTypes.string,
   }),
-  options: PropTypes.arrayOf({
+  options: PropTypes.shape({
     search: PropTypes.bool,
   }),
-  columns: PropTypes.arrayOf({
-    title: PropTypes.string,
-    field: PropTypes.string,
-    render: PropTypes.func,
+
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      field: PropTypes.string,
+      render: PropTypes.func,
+    })
+  ),
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      icon: PropTypes.shape({}),
+      tooltip: PropTypes.string,
+      onClick: PropTypes.func,
+    })
+  ),
+  tableRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Element),
   }),
-  actions: PropTypes.arrayOf({
-    icon: PropTypes.string,
-    tooltip: PropTypes.string,
-    onClick: PropTypes.func,
-  }),
-  tableRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]).isRequired,
   title: PropTypes.string.isRequired,
   dataReceiveCallback: PropTypes.func,
   dataUrl: PropTypes.string.isRequired,

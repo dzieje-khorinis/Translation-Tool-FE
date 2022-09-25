@@ -204,20 +204,23 @@ function SidePane({ user, filters, setFilters, aggregations, themeName }) {
 SidePane.defaultProps = {};
 SidePane.propTypes = {
   user: PropTypes.shape({
-    role: PropTypes.string,
+    role: PropTypes.number,
     roleLang: PropTypes.string,
   }).isRequired,
   filters: PropTypes.shape({
     dataLanguage: PropTypes.string,
     searchTerm: PropTypes.string,
     path: PropTypes.string,
-    states: PropTypes.string,
+    states: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   setFilters: PropTypes.func.isRequired,
   themeName: PropTypes.string.isRequired,
-  aggregations: PropTypes.arrayOf({
-    value: PropTypes.string,
-    label: PropTypes.string,
+  aggregations: PropTypes.exact({
+    NEW: PropTypes.arrayOf(PropTypes.number),
+    TODO: PropTypes.arrayOf(PropTypes.number),
+    READY_TO_REVIEW: PropTypes.arrayOf(PropTypes.number),
+    NEEDS_WORK: PropTypes.arrayOf(PropTypes.number),
+    ACCEPTED: PropTypes.arrayOf(PropTypes.number),
   }).isRequired,
 };
 export default SidePane;

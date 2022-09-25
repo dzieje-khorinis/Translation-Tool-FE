@@ -40,7 +40,7 @@ function Profile({ user }) {
 
 Profile.propTypes = {
   user: PropTypes.shape({
-    role: PropTypes.string,
+    role: PropTypes.number,
     roleLang: PropTypes.string,
     name: PropTypes.string,
     email: PropTypes.string,

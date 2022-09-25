@@ -18,9 +18,16 @@ function AuthRoute(props) {
   return <Route {...props} />;
 }
 
+AuthRoute.defaultProps = {
+  location: null,
+};
+
 AuthRoute.propTypes = {
   type: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+  }),
   loggedIn: PropTypes.bool.isRequired,
 };
 export default AuthRoute;

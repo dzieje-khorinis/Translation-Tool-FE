@@ -114,12 +114,14 @@ function TranslationHistory({
               ));
             return rows.length ? (
               <table className="diffTable">
-                <tr>
-                  <th>{t('Field')}</th>
-                  <th>{t('Old value')}</th>
-                  <th>{t('New value')}</th>
-                </tr>
-                {rows}
+                <thead>
+                  <tr>
+                    <th>{t('Field')}</th>
+                    <th>{t('Old value')}</th>
+                    <th>{t('New value')}</th>
+                  </tr>
+                </thead>
+                <tbody>{rows}</tbody>
               </table>
             ) : (
               <p>
@@ -133,6 +135,7 @@ function TranslationHistory({
       filters={{
         ...(translationId && { translation_id: translationId }),
         ...(userId && { user_id: userId }),
+        ...filters,
       }}
     />
   );
@@ -153,8 +156,10 @@ TranslationHistory.propTypes = {
 
   filters: PropTypes.shape({
     language: PropTypes.string.isRequired,
-    startDate: PropTypes.number.isRequired,
-    endDate: PropTypes.number.isRequired,
+    startDate: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
+    endDate: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      .isRequired,
     username: PropTypes.string,
     key: PropTypes.string,
   }),

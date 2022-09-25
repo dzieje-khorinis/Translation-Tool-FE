@@ -92,14 +92,13 @@ function TranslationsTable({
 }
 
 TranslationsTable.propTypes = {
-  filters: PropTypes.exact({
+  filters: PropTypes.shape({
     dataLanguage: PropTypes.string.isRequired,
     searchTerm: PropTypes.string.isRequired,
   }).isRequired,
-  tableRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-  ]).isRequired,
+  tableRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Element),
+  }).isRequired,
   setAggregations: PropTypes.func.isRequired,
   openEditModal: PropTypes.func.isRequired,
   setPageState: PropTypes.func.isRequired,
